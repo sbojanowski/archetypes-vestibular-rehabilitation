@@ -19,9 +19,9 @@
       "original_namespace" : "",
       "original_publisher" : "",
       "custodian_namespace" : "",
-      "sem_ver" : "0.1.1",
+      "sem_ver" : "1.0.0",
       "build_uid" : "970450ae-a00a-4d49-bb3e-dc9a8bf20725",
-      "MD5-CAM-1.0.1" : "bc1cf79f23be3591520d56da434921ca",
+      "MD5-CAM-1.0.1" : "00084ea8de33c6ea6e69c93f451f0a91",
       "PARENT:MD5-CAM-1.0.1" : "a146e6563b8d6de958ed8e486af32632"
     },
     "details" : {
@@ -59,6 +59,18 @@
         "attributes" : [ ],
         "attributeTuples" : [ ]
       }, {
+        "@type" : "C_COMPLEX_OBJECT",
+        "rmTypeName" : "ELEMENT",
+        "nodeId" : "at0011.1",
+        "attributes" : [ ],
+        "attributeTuples" : [ ]
+      }, {
+        "@type" : "C_COMPLEX_OBJECT",
+        "rmTypeName" : "ELEMENT",
+        "nodeId" : "at0014.1",
+        "attributes" : [ ],
+        "attributeTuples" : [ ]
+      }, {
         "@type" : "C_ARCHETYPE_ROOT",
         "rmTypeName" : "CLUSTER",
         "occurrences" : "0..1",
@@ -84,7 +96,14 @@
     "@type" : "ARCHETYPE_TERMINOLOGY",
     "conceptCode" : "at0000",
     "termDefinitions" : {
-      "en" : { }
+      "en" : {
+        "at0014.1" : {
+          "@type" : "ARCHETYPE_TERM",
+          "code" : "at0014.1",
+          "text" : "multimedia",
+          "description" : ""
+        }
+      }
     },
     "termBindings" : { },
     "terminologyExtracts" : { },
@@ -110,7 +129,20 @@
       "otherDetails" : {
         "PARENT:MD5-CAM-1.0.1" : "c101bacee17f9f8087864fdf8e703f5e"
       },
-      "details" : { }
+      "details" : {
+        "en" : {
+          "@type" : "RESOURCE_DESCRIPTION_ITEM",
+          "language" : {
+            "terminologyId" : {
+              "value" : "ISO_639-1"
+            },
+            "codeString" : "en"
+          },
+          "keywords" : [ ],
+          "originalResourceUri" : { },
+          "otherDetails" : { }
+        }
+      }
     },
     "parentArchetypeId" : "openEHR-EHR-CLUSTER.condition.v1",
     "differential" : true,
@@ -129,7 +161,14 @@
       "@type" : "ARCHETYPE_TERMINOLOGY",
       "conceptCode" : "at0000",
       "termDefinitions" : {
-        "en" : { }
+        "en" : {
+          "at0000.1" : {
+            "@type" : "ARCHETYPE_TERM",
+            "code" : "at0000.1",
+            "text" : "TargetCondition",
+            "description" : "Condition"
+          }
+        }
       },
       "termBindings" : { },
       "terminologyExtracts" : { },
@@ -161,7 +200,20 @@
       "otherDetails" : {
         "PARENT:MD5-CAM-1.0.1" : "c101bacee17f9f8087864fdf8e703f5e"
       },
-      "details" : { }
+      "details" : {
+        "en" : {
+          "@type" : "RESOURCE_DESCRIPTION_ITEM",
+          "language" : {
+            "terminologyId" : {
+              "value" : "ISO_639-1"
+            },
+            "codeString" : "en"
+          },
+          "keywords" : [ ],
+          "originalResourceUri" : { },
+          "otherDetails" : { }
+        }
+      }
     },
     "parentArchetypeId" : "openEHR-EHR-CLUSTER.condition.v1",
     "differential" : true,
@@ -184,7 +236,7 @@
           "at0000.1" : {
             "@type" : "ARCHETYPE_TERM",
             "code" : "at0000.1",
-            "text" : "Condition (2)",
+            "text" : "ExclusionCondition",
             "description" : "Condition"
           }
         }
