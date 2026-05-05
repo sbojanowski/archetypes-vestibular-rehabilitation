@@ -23,12 +23,12 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"8d6d9842afa1c9104de2892e2ae5f386">
+		["MD5-CAM-1.0.1"] = <"c101bacee17f9f8087864fdf8e703f5e">
 		["build_uid"] = <"e2651c9d-4a36-3803-b240-2fcdf02fdbc6">
 	>
 
 definition
-	CLUSTER[at0000] matches {    -- condition
+	CLUSTER[at0000] matches {    -- Condition
 		items cardinality matches {1..*; unordered} matches {
 			ELEMENT[at0001] matches {    -- name
 				value matches {
@@ -48,7 +48,7 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"condition">
+					text = <"Condition">
 					description = <"Condition">
 				>
 				["at0001"] = <
