@@ -23,12 +23,12 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"fb389a588e512c38e21a81855e630f94">
+		["MD5-CAM-1.0.1"] = <"a146e6563b8d6de958ed8e486af32632">
 		["build_uid"] = <"0c7c8082-f8ce-3a16-b48f-d61ee52e9e6a">
 	>
 
 definition
-	CLUSTER[at0000] matches {    -- exercise
+	CLUSTER[at0000] matches {    -- Exercise
 		items cardinality matches {1..*; unordered} matches {
 			ELEMENT[at0001] matches {    -- name
 				value matches {
@@ -101,7 +101,7 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"exercise">
+					text = <"Exercise">
 					description = <"Exercise">
 				>
 				["at0001"] = <
