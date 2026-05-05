@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"7034dac46272ae37362cbb84c9bbe6d7">
+		["MD5-CAM-1.0.1"] = <"28925b3b9230251585f08dde72a82963">
 		["build_uid"] = <"0c7c8082-f8ce-3a16-b48f-d61ee52e9e6a">
 	>
 
@@ -80,7 +80,19 @@ definition
 					DV_CODED_TEXT matches {*}
 				}
 			}
-			ELEMENT[at0014] occurrences matches {1..*} matches {*}    -- multimedia
+			ELEMENT[at0014] occurrences matches {1..*} matches {    -- multimedia
+				value matches {
+					DV_MULTIMEDIA matches {*}
+				}
+			}
+			allow_archetype CLUSTER[at0015] occurrences matches {0..*} matches {    -- target_condition
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.condition\.v0/}
+			}
+			allow_archetype CLUSTER[at0016] occurrences matches {0..*} matches {    -- exclusion_condition
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.condition\.v0/}
+			}
 		}
 	}
 
@@ -135,6 +147,14 @@ ontology
 				>
 				["at0014"] = <
 					text = <"multimedia">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"target_condition">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"exclusion_condition">
 					description = <"">
 				>
 			>
