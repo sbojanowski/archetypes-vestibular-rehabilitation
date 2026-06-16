@@ -1,0 +1,538 @@
+archetype (adl_version=1.4; uid=7f3a2c1e-4b8d-4e9f-a123-0d5e6f7a8b9c)
+	openEHR-EHR-OBSERVATION.dizziness_handicap_inventory.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-06-16">
+		["name"] = <"openEHR Modeller">
+		["organisation"] = <"">
+		["email"] = <"">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results of the Dizziness Handicap Inventory (DHI), a 25-item self-report questionnaire designed to quantify the self-perceived handicapping effects imposed by vestibular system disease.">
+			keywords = <"dizziness","vertigo","vestibular","handicap","DHI","balance","questionnaire">
+			copyright = <"© Jacobson GP, Newman CW (1990). The development of the Dizziness Handicap Inventory. Archives of Otolaryngology – Head & Neck Surgery, 116(4):424–427. Reproduced under license.">
+			use = <"Use to record DHI responses and derived scores in patients with dizziness or balance disorders. Each item is rated as 'Yes' (4 points), 'Sometimes' (2 points), or 'No' (0 points). Items are grouped into Physical (P), Emotional (E), and Functional (F) subscales. Total score ranges from 0 to 100.">
+			misuse = <"Not to be used for paediatric populations without validation. Not intended as a diagnostic tool; use as part of broader vestibular assessment.">
+		>
+	>
+	other_details = <
+		["licence"] = <"Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Jacobson GP, Newman CW. The development of the Dizziness Handicap Inventory. Arch Otolaryngol Head Neck Surg. 1990;116(4):424-427. doi:10.1001/archotol.1990.01870040046011">
+		["original_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"">
+		["build_uid"] = <"1bc1ce63-764d-37f9-b168-5142468d77be">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Dizziness Handicap Inventory (DHI)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					POINT_EVENT[at0002] occurrences matches {0..1} matches {    -- Any point in time event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Item tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {    -- Physical subscale
+										items cardinality matches {1..*; ordered} matches {
+											ELEMENT[at0010] occurrences matches {0..1} matches {    -- P1: Does looking up increase your problem?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0011] occurrences matches {0..1} matches {    -- P2: Does bending over increase your problem?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0012] occurrences matches {0..1} matches {    -- P3: Does performing quick movements of your head increase your problem?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0013] occurrences matches {0..1} matches {    -- P4: Does getting in or out of bed increase your problem?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0014] occurrences matches {0..1} matches {    -- P5: Does reaching up increase your problem?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0015] occurrences matches {0..1} matches {    -- P6: Does walking down the sidewalk increase your problem?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0016] occurrences matches {0..1} matches {    -- P7: Does walking up or down a hill increase your problem?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+										}
+									}
+									CLUSTER[at0005] occurrences matches {0..1} matches {    -- Emotional subscale
+										items cardinality matches {1..*; ordered} matches {
+											ELEMENT[at0020] occurrences matches {0..1} matches {    -- E1: Because of your problem, do you feel embarrassed in front of others?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0021] occurrences matches {0..1} matches {    -- E2: Because of your problem, do you feel frustrated?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0022] occurrences matches {0..1} matches {    -- E3: Because of your problem, are you afraid to leave your home without having someone accompany you?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0023] occurrences matches {0..1} matches {    -- E4: Has your problem placed stress on your relationships with members of your family or friends?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0024] occurrences matches {0..1} matches {    -- E5: Because of your problem, are you afraid to be home alone?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0025] occurrences matches {0..1} matches {    -- E6: Because of your problem, are you depressed?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0026] occurrences matches {0..1} matches {    -- E7: Does your problem interfere with your job or household responsibilities?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0027] occurrences matches {0..1} matches {    -- E8: Because of your problem, do you have difficulty concentrating?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0028] occurrences matches {0..1} matches {    -- E9: Because of your problem, do you find it difficult to walk around your house in the dark?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+										}
+									}
+									CLUSTER[at0006] occurrences matches {0..1} matches {    -- Functional subscale
+										items cardinality matches {1..*; ordered} matches {
+											ELEMENT[at0030] occurrences matches {0..1} matches {    -- F1: Because of your problem, do you have difficulty doing housework or yard work?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0031] occurrences matches {0..1} matches {    -- F2: Because of your problem, is it difficult for you to get into or out of bed?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0032] occurrences matches {0..1} matches {    -- F3: Because of your problem, do you have difficulty going to a restaurant, movies, or to a party?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0033] occurrences matches {0..1} matches {    -- F4: Because of your problem, is it difficult for you to walk on uneven ground?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0034] occurrences matches {0..1} matches {    -- F5: Because of your problem, do you have difficulty with strenuous activities such as sports or dancing?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0035] occurrences matches {0..1} matches {    -- F6: Because of your problem, is it difficult for you to go to the movies, or to a party or to a dinner out?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0036] occurrences matches {0..1} matches {    -- F7: Because of your problem, do you have difficulty reading?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0037] occurrences matches {0..1} matches {    -- F8: Because of your problem, does performing more ambitious activities like sports, dancing, or household chores such as sweeping or putting dishes away reduce your activities or ambitions?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+											ELEMENT[at0038] occurrences matches {0..1} matches {    -- F9: Because of your problem, is it difficult for you to walk?
+												value matches {
+													0|[local::at0300],
+													2|[local::at0301],
+													4|[local::at0302]
+												}
+											}
+										}
+									}
+									ELEMENT[at0080] occurrences matches {0..1} matches {    -- Physical subscale score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..28|}
+											}
+										}
+									}
+									ELEMENT[at0081] occurrences matches {0..1} matches {    -- Emotional subscale score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..36|}
+											}
+										}
+									}
+									ELEMENT[at0082] occurrences matches {0..1} matches {    -- Functional subscale score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..36|}
+											}
+										}
+									}
+									ELEMENT[at0083] occurrences matches {0..1} matches {    -- Total DHI score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..100|}
+											}
+										}
+									}
+									ELEMENT[at0084] occurrences matches {0..1} matches {    -- Handicap severity
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0085,    -- No handicap (0–16)
+													at0086,    -- Mild handicap (18–36)
+													at0087,    -- Moderate handicap (38–52)
+													at0088]    -- Severe handicap (54–100)
+												}
+											}
+										}
+									}
+									ELEMENT[at0089] occurrences matches {0..1} matches {    -- Comment
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0100] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0101] occurrences matches {0..1} matches {    -- Administration method
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0102,    -- Self-administered
+									at0103,    -- Clinician-administered (interview)
+									at0104]    -- Proxy-reported
+								}
+							}
+						}
+					}
+					ELEMENT[at0105] occurrences matches {0..1} matches {    -- Questionnaire language
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0106] occurrences matches {0..1} matches {    -- Version
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					allow_archetype CLUSTER[at0107] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Dizziness Handicap Inventory (DHI)">
+					description = <"A 25-item self-report questionnaire measuring the self-perceived handicapping effects of vestibular system disease, comprising Physical, Emotional, and Functional subscales.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"Event series in the OBSERVATION.">
+				>
+				["at0002"] = <
+					text = <"Any point in time event">
+					description = <"Default, unspecified point in time event which may be more explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Physical subscale">
+					description = <"Seven items assessing dizziness provoked by physical movements or positions (items P1–P7). Maximum score 28.">
+				>
+				["at0005"] = <
+					text = <"Emotional subscale">
+					description = <"Nine items assessing the emotional impact of dizziness (items E1–E9). Maximum score 36.">
+				>
+				["at0006"] = <
+					text = <"Functional subscale">
+					description = <"Nine items assessing functional limitations caused by dizziness (items F1–F9). Maximum score 36.">
+				>
+				["at0010"] = <
+					text = <"P1: Does looking up increase your problem?">
+					description = <"Physical item 1 (DHI question 2). Assesses whether upward gaze exacerbates dizziness.">
+				>
+				["at0011"] = <
+					text = <"P2: Does bending over increase your problem?">
+					description = <"Physical item 2 (DHI question 8). Assesses whether bending forward exacerbates dizziness.">
+				>
+				["at0012"] = <
+					text = <"P3: Does performing quick movements of your head increase your problem?">
+					description = <"Physical item 3 (DHI question 10). Assesses whether rapid head movements exacerbate dizziness.">
+				>
+				["at0013"] = <
+					text = <"P4: Does getting in or out of bed increase your problem?">
+					description = <"Physical item 4 (DHI question 14). Assesses whether positional changes in bed exacerbate dizziness.">
+				>
+				["at0014"] = <
+					text = <"P5: Does reaching up increase your problem?">
+					description = <"Physical item 5 (DHI question 16). Assesses whether reaching overhead exacerbates dizziness.">
+				>
+				["at0015"] = <
+					text = <"P6: Does walking down the sidewalk increase your problem?">
+					description = <"Physical item 6 (DHI question 18). Assesses whether walking on a flat surface exacerbates dizziness.">
+				>
+				["at0016"] = <
+					text = <"P7: Does walking up or down a hill increase your problem?">
+					description = <"Physical item 7 (DHI question 24). Assesses whether inclined surfaces exacerbate dizziness.">
+				>
+				["at0020"] = <
+					text = <"E1: Because of your problem, do you feel embarrassed in front of others?">
+					description = <"Emotional item 1 (DHI question 1). Assesses social embarrassment related to dizziness.">
+				>
+				["at0021"] = <
+					text = <"E2: Because of your problem, do you feel frustrated?">
+					description = <"Emotional item 2 (DHI question 4). Assesses frustration related to dizziness.">
+				>
+				["at0022"] = <
+					text = <"E3: Because of your problem, are you afraid to leave your home without having someone accompany you?">
+					description = <"Emotional item 3 (DHI question 9). Assesses fear of leaving home unaccompanied.">
+				>
+				["at0023"] = <
+					text = <"E4: Has your problem placed stress on your relationships with members of your family or friends?">
+					description = <"Emotional item 4 (DHI question 11). Assesses relational stress caused by dizziness.">
+				>
+				["at0024"] = <
+					text = <"E5: Because of your problem, are you afraid to be home alone?">
+					description = <"Emotional item 5 (DHI question 13). Assesses fear of being at home alone due to dizziness.">
+				>
+				["at0025"] = <
+					text = <"E6: Because of your problem, are you depressed?">
+					description = <"Emotional item 6 (DHI question 17). Assesses depression related to dizziness.">
+				>
+				["at0026"] = <
+					text = <"E7: Does your problem interfere with your job or household responsibilities?">
+					description = <"Emotional item 7 (DHI question 19). Assesses interference with work or home responsibilities — emotional burden dimension.">
+				>
+				["at0027"] = <
+					text = <"E8: Because of your problem, do you have difficulty concentrating?">
+					description = <"Emotional item 8 (DHI question 23). Assesses concentration difficulties related to dizziness.">
+				>
+				["at0028"] = <
+					text = <"E9: Because of your problem, do you find it difficult to walk around your house in the dark?">
+					description = <"Emotional item 9 (DHI question 25). Assesses fear/anxiety when navigating in dim light.">
+				>
+				["at0030"] = <
+					text = <"F1: Because of your problem, do you have difficulty doing housework or yard work?">
+					description = <"Functional item 1 (DHI question 3). Assesses difficulty with domestic activities.">
+				>
+				["at0031"] = <
+					text = <"F2: Because of your problem, is it difficult for you to get into or out of bed?">
+					description = <"Functional item 2 (DHI question 5). Assesses difficulty with bed transfers — functional dimension.">
+				>
+				["at0032"] = <
+					text = <"F3: Because of your problem, do you have difficulty going to a restaurant, movies, or to a party?">
+					description = <"Functional item 3 (DHI question 6). Assesses participation in social outings.">
+				>
+				["at0033"] = <
+					text = <"F4: Because of your problem, is it difficult for you to walk on uneven ground?">
+					description = <"Functional item 4 (DHI question 7). Assesses walking on irregular surfaces.">
+				>
+				["at0034"] = <
+					text = <"F5: Because of your problem, do you have difficulty with strenuous activities such as sports or dancing?">
+					description = <"Functional item 5 (DHI question 12). Assesses capacity for vigorous physical activities.">
+				>
+				["at0035"] = <
+					text = <"F6: Because of your problem, is it difficult for you to go to the movies, or to a party or to a dinner out?">
+					description = <"Functional item 6 (DHI question 15). Assesses social participation in entertainment venues.">
+				>
+				["at0036"] = <
+					text = <"F7: Because of your problem, do you have difficulty reading?">
+					description = <"Functional item 7 (DHI question 20). Assesses reading ability affected by dizziness or visual disturbance.">
+				>
+				["at0037"] = <
+					text = <"F8: Because of your problem, does performing more ambitious activities like sports, dancing, or household chores such as sweeping or putting dishes away reduce your activities or ambitions?">
+					description = <"Functional item 8 (DHI question 21). Assesses reduction in ambitions or activities.">
+				>
+				["at0038"] = <
+					text = <"F9: Because of your problem, is it difficult for you to walk?">
+					description = <"Functional item 9 (DHI question 22). Assesses basic ambulation.">
+				>
+				["at0300"] = <
+					text = <"No">
+					description = <"The problem does not cause this difficulty or occurrence. Score: 0.">
+				>
+				["at0301"] = <
+					text = <"Sometimes">
+					description = <"The problem sometimes causes this difficulty or occurrence. Score: 2.">
+				>
+				["at0302"] = <
+					text = <"Yes">
+					description = <"The problem always or definitely causes this difficulty or occurrence. Score: 4.">
+				>
+				["at0080"] = <
+					text = <"Physical subscale score">
+					description = <"Sum of scores for the 7 Physical subscale items. Range 0–28.">
+				>
+				["at0081"] = <
+					text = <"Emotional subscale score">
+					description = <"Sum of scores for the 9 Emotional subscale items. Range 0–36.">
+				>
+				["at0082"] = <
+					text = <"Functional subscale score">
+					description = <"Sum of scores for the 9 Functional subscale items. Range 0–36.">
+				>
+				["at0083"] = <
+					text = <"Total DHI score">
+					description = <"Total score derived by summing all 25 item scores (Physical + Emotional + Functional). Range 0–100. Higher scores indicate greater self-perceived handicap.">
+				>
+				["at0084"] = <
+					text = <"Handicap severity">
+					description = <"Categorical classification of vestibular handicap based on total DHI score.">
+				>
+				["at0085"] = <
+					text = <"No handicap (0–16)">
+					description = <"Total DHI score 0–16. No clinically significant handicap.">
+				>
+				["at0086"] = <
+					text = <"Mild handicap (18–36)">
+					description = <"Total DHI score 18–36. Mild self-perceived handicap.">
+				>
+				["at0087"] = <
+					text = <"Moderate handicap (38–52)">
+					description = <"Total DHI score 38–52. Moderate self-perceived handicap.">
+				>
+				["at0088"] = <
+					text = <"Severe handicap (54–100)">
+					description = <"Total DHI score 54–100. Severe self-perceived handicap.">
+				>
+				["at0089"] = <
+					text = <"Comment">
+					description = <"Additional narrative comment about the DHI assessment not captured in other fields.">
+				>
+				["at0100"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0101"] = <
+					text = <"Administration method">
+					description = <"How the DHI questionnaire was administered.">
+				>
+				["at0102"] = <
+					text = <"Self-administered">
+					description = <"The patient completed the questionnaire independently.">
+				>
+				["at0103"] = <
+					text = <"Clinician-administered (interview)">
+					description = <"A clinician read the questions to the patient and recorded responses.">
+				>
+				["at0104"] = <
+					text = <"Proxy-reported">
+					description = <"A proxy (e.g., carer or family member) completed the questionnaire on behalf of the patient.">
+				>
+				["at0105"] = <
+					text = <"Questionnaire language">
+					description = <"Language in which the DHI was administered (relevant when using a validated translation).">
+				>
+				["at0106"] = <
+					text = <"Version">
+					description = <"Specific version or translation of the DHI used (e.g., 'Original Jacobson & Newman 1990', 'Turkish adaptation 2005').">
+				>
+				["at0107"] = <
+					text = <"Extension">
+					description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+				>
+			>
+		>
+	>
