@@ -19,9 +19,9 @@
       "original_namespace" : "",
       "original_publisher" : "",
       "custodian_namespace" : "",
-      "sem_ver" : "0.3.0",
+      "sem_ver" : "0.4.0",
       "build_uid" : "8b03925f-10f8-44a1-9f5d-0a0c0c99a431",
-      "MD5-CAM-1.0.1" : "dbda4cf66b3c3fef13cdb5d2da2850a4",
+      "MD5-CAM-1.0.1" : "3e322c88d54e50167292a5894e85fbda",
       "PARENT:MD5-CAM-1.0.1" : "3B0765A6B395C9D01595FDF2D440E6CB"
     },
     "details" : {
@@ -292,7 +292,7 @@
         "at0000.1" : {
           "@type" : "ARCHETYPE_TERM",
           "code" : "at0000.1",
-          "text" : "pvr-base-encounter",
+          "text" : "PVR_Base_Encounter",
           "description" : "Interaction, contact or care event between a subject of care and healthcare provider(s)."
         }
       },
