@@ -30,12 +30,12 @@ description
 		["custodian_organisation"] = <"openEHR Foundation">
 		["references"] = <"Jacobson GP, Newman CW. The development of the Dizziness Handicap Inventory. Arch Otolaryngol Head Neck Surg. 1990;116(4):424-427. doi:10.1001/archotol.1990.01870040046011">
 		["original_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"faaa24ace26c87fa0f1f49e6f8170e79">
+		["MD5-CAM-1.0.1"] = <"85d2877ce622fb057917242ac12fd934">
 		["build_uid"] = <"1bc1ce63-764d-37f9-b168-5142468d77be">
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- dizziness_handicap_inventory
+	OBSERVATION[at0000] matches {    -- Dizziness Handicap Inventory (DHI)
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
@@ -322,7 +322,7 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"dizziness_handicap_inventory">
+					text = <"Dizziness Handicap Inventory (DHI)">
 					description = <"A 25-item self-report questionnaire measuring the self-perceived handicapping effects of vestibular system disease, comprising Physical, Emotional, and Functional subscales.">
 				>
 				["at0001"] = <
