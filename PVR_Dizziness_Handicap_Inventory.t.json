@@ -19,9 +19,9 @@
       "original_namespace" : "",
       "original_publisher" : "",
       "custodian_namespace" : "",
-      "sem_ver" : "0.1.0",
+      "sem_ver" : "0.2.0",
       "build_uid" : "bd354368-0add-4636-a863-2791982afcba",
-      "MD5-CAM-1.0.1" : "e9d2fcb59a0e61c60f108819871a3eda",
+      "MD5-CAM-1.0.1" : "9ed45dd07039297b817d37b5c81e2220",
       "PARENT:MD5-CAM-1.0.1" : "3B0765A6B395C9D01595FDF2D440E6CB"
     },
     "details" : {
@@ -243,7 +243,7 @@
         "nodeId" : "at0.2",
         "attributes" : [ ],
         "attributeTuples" : [ ],
-        "archetypeRef" : "openEHR-EHR-OBSERVATION.ovl-dizziness_handicap_inventory-001.v0",
+        "archetypeRef" : "openEHR-EHR-OBSERVATION.ovl-dizziness_handicap_inventory-001.v1",
         "referenceType" : "archetypeOverlay"
       } ]
     } ],
@@ -387,7 +387,7 @@
   "otherMetaData" : { },
   "templateOverlays" : [ {
     "@type" : "TEMPLATE_OVERLAY",
-    "uid" : "ae64ff22-ae5e-4845-b291-722c0df6a296",
+    "uid" : "5efaae0e-6396-4e0b-a354-13c3e58145f3",
     "description" : {
       "@type" : "RESOURCE_DESCRIPTION",
       "originalAuthor" : { },
@@ -396,15 +396,15 @@
       "references" : { },
       "conversionDetails" : { },
       "otherDetails" : {
-        "PARENT:MD5-CAM-1.0.1" : ""
+        "PARENT:MD5-CAM-1.0.1" : "85d2877ce622fb057917242ac12fd934"
       },
       "details" : { }
     },
-    "parentArchetypeId" : "openEHR-EHR-OBSERVATION.dizziness_handicap_inventory.v0",
+    "parentArchetypeId" : "openEHR-EHR-OBSERVATION.dizziness_handicap_inventory.v1",
     "differential" : true,
     "archetypeId" : {
       "@type" : "ARCHETYPE_HRID",
-      "value" : "openEHR-EHR-OBSERVATION.ovl-dizziness_handicap_inventory-001.v0"
+      "value" : "openEHR-EHR-OBSERVATION.ovl-dizziness_handicap_inventory-001.v1"
     },
     "definition" : {
       "@type" : "C_COMPLEX_OBJECT",
