@@ -18,7 +18,7 @@ description
         ["en"] = <
             language    = <[ISO_639-1::en]>
             purpose     = <"To record the results of a Visual Motion Sensitivity assessment performed using the Virtualis Visual Motion Sensitivity virtual reality application, in which the patient rates the intensity of symptoms provoked by optokinetic and optical flow visual stimuli.">
-            use         = <"Use to record the patient's symptom ratings for each of the eight visual stimulus conditions presented by the Virtualis Visual Motion Sensitivity virtual reality application: five optokinetic conditions (motionless, movement to the left, movement to the right, upward movement, downward movement) and three optical flow conditions (motionless, forward direction, backward direction). For each condition, record whether it was performed (with the reason if it was not or only partially performed), the symptom rating on a visual analog scale (VAS) from 0 (no symptoms) to 10 (the most severe symptoms), and an optional comment. Repeat the assessment over the course of vestibular rehabilitation to monitor change in visual motion sensitivity.">
+            use         = <"Use to record the patient's symptom ratings for each of the eight visual stimulus conditions presented by the Virtualis Visual Motion Sensitivity virtual reality application: five optokinetic conditions (motionless, movement to the left, movement to the right, upward movement, downward movement) and three optical flow conditions (motionless, forward direction, backward direction). For each condition, record whether it was performed, the symptom rating on a visual analog scale (VAS) from 0 (no symptoms) to 10 (the most severe symptoms), and an optional comment. Repeat the assessment over the course of vestibular rehabilitation to monitor change in visual motion sensitivity.">
             misuse      = <"Not a diagnostic tool; use as part of a comprehensive vestibular assessment. Not intended to record results of visual motion sensitivity assessments performed with other applications or stimulus sets, whose conditions are not equivalent.">
             copyright   = <"">
             keywords    = <"visual motion sensitivity","visual vertigo","optokinetic","optical flow","virtual reality","Virtualis","VAS","vestibular rehabilitation">
@@ -60,11 +60,6 @@ definition
                                                     }
                                                 }
                                             }
-                                            ELEMENT[at0111] occurrences matches {0..1} matches {   -- Reason not performed
-                                                value matches {
-                                                    DV_TEXT matches {*}
-                                                }
-                                            }
                                             ELEMENT[at0112] occurrences matches {0..1} matches {   -- VAS score
                                                 value matches {
                                                     DV_QUANTITY matches {
@@ -98,11 +93,6 @@ definition
                                                             at0103]    -- Partially performed
                                                         }
                                                     }
-                                                }
-                                            }
-                                            ELEMENT[at0121] occurrences matches {0..1} matches {   -- Reason not performed
-                                                value matches {
-                                                    DV_TEXT matches {*}
                                                 }
                                             }
                                             ELEMENT[at0122] occurrences matches {0..1} matches {   -- VAS score
@@ -140,11 +130,6 @@ definition
                                                     }
                                                 }
                                             }
-                                            ELEMENT[at0131] occurrences matches {0..1} matches {   -- Reason not performed
-                                                value matches {
-                                                    DV_TEXT matches {*}
-                                                }
-                                            }
                                             ELEMENT[at0132] occurrences matches {0..1} matches {   -- VAS score
                                                 value matches {
                                                     DV_QUANTITY matches {
@@ -178,11 +163,6 @@ definition
                                                             at0103]    -- Partially performed
                                                         }
                                                     }
-                                                }
-                                            }
-                                            ELEMENT[at0141] occurrences matches {0..1} matches {   -- Reason not performed
-                                                value matches {
-                                                    DV_TEXT matches {*}
                                                 }
                                             }
                                             ELEMENT[at0142] occurrences matches {0..1} matches {   -- VAS score
@@ -220,11 +200,6 @@ definition
                                                     }
                                                 }
                                             }
-                                            ELEMENT[at0151] occurrences matches {0..1} matches {   -- Reason not performed
-                                                value matches {
-                                                    DV_TEXT matches {*}
-                                                }
-                                            }
                                             ELEMENT[at0152] occurrences matches {0..1} matches {   -- VAS score
                                                 value matches {
                                                     DV_QUANTITY matches {
@@ -258,11 +233,6 @@ definition
                                                             at0103]    -- Partially performed
                                                         }
                                                     }
-                                                }
-                                            }
-                                            ELEMENT[at0161] occurrences matches {0..1} matches {   -- Reason not performed
-                                                value matches {
-                                                    DV_TEXT matches {*}
                                                 }
                                             }
                                             ELEMENT[at0162] occurrences matches {0..1} matches {   -- VAS score
@@ -300,11 +270,6 @@ definition
                                                     }
                                                 }
                                             }
-                                            ELEMENT[at0171] occurrences matches {0..1} matches {   -- Reason not performed
-                                                value matches {
-                                                    DV_TEXT matches {*}
-                                                }
-                                            }
                                             ELEMENT[at0172] occurrences matches {0..1} matches {   -- VAS score
                                                 value matches {
                                                     DV_QUANTITY matches {
@@ -338,11 +303,6 @@ definition
                                                             at0103]    -- Partially performed
                                                         }
                                                     }
-                                                }
-                                            }
-                                            ELEMENT[at0181] occurrences matches {0..1} matches {   -- Reason not performed
-                                                value matches {
-                                                    DV_TEXT matches {*}
                                                 }
                                             }
                                             ELEMENT[at0182] occurrences matches {0..1} matches {   -- VAS score
@@ -438,10 +398,6 @@ ontology
                     text        = <"Assessment status">
                     description = <"Whether the 'Optokinetic - motionless' condition was performed.">
                 >
-                ["at0111"] = <
-                    text        = <"Reason not performed">
-                    description = <"Reason the 'Optokinetic - motionless' condition was not performed or was only partially performed.">
-                >
                 ["at0112"] = <
                     text        = <"VAS score">
                     description = <"Patient-rated intensity of symptoms (e.g. dizziness, disorientation or discomfort) during the 'Optokinetic - motionless' condition, on a visual analog scale (VAS) from 0 (no symptoms) to 10 (the most severe symptoms).">
@@ -457,10 +413,6 @@ ontology
                 ["at0120"] = <
                     text        = <"Assessment status">
                     description = <"Whether the 'Optokinetic - movement to the left' condition was performed.">
-                >
-                ["at0121"] = <
-                    text        = <"Reason not performed">
-                    description = <"Reason the 'Optokinetic - movement to the left' condition was not performed or was only partially performed.">
                 >
                 ["at0122"] = <
                     text        = <"VAS score">
@@ -478,10 +430,6 @@ ontology
                     text        = <"Assessment status">
                     description = <"Whether the 'Optokinetic - movement to the right' condition was performed.">
                 >
-                ["at0131"] = <
-                    text        = <"Reason not performed">
-                    description = <"Reason the 'Optokinetic - movement to the right' condition was not performed or was only partially performed.">
-                >
                 ["at0132"] = <
                     text        = <"VAS score">
                     description = <"Patient-rated intensity of symptoms (e.g. dizziness, disorientation or discomfort) during the 'Optokinetic - movement to the right' condition, on a visual analog scale (VAS) from 0 (no symptoms) to 10 (the most severe symptoms).">
@@ -497,10 +445,6 @@ ontology
                 ["at0140"] = <
                     text        = <"Assessment status">
                     description = <"Whether the 'Optokinetic - upward movement' condition was performed.">
-                >
-                ["at0141"] = <
-                    text        = <"Reason not performed">
-                    description = <"Reason the 'Optokinetic - upward movement' condition was not performed or was only partially performed.">
                 >
                 ["at0142"] = <
                     text        = <"VAS score">
@@ -518,10 +462,6 @@ ontology
                     text        = <"Assessment status">
                     description = <"Whether the 'Optokinetic - downward movement' condition was performed.">
                 >
-                ["at0151"] = <
-                    text        = <"Reason not performed">
-                    description = <"Reason the 'Optokinetic - downward movement' condition was not performed or was only partially performed.">
-                >
                 ["at0152"] = <
                     text        = <"VAS score">
                     description = <"Patient-rated intensity of symptoms (e.g. dizziness, disorientation or discomfort) during the 'Optokinetic - downward movement' condition, on a visual analog scale (VAS) from 0 (no symptoms) to 10 (the most severe symptoms).">
@@ -537,10 +477,6 @@ ontology
                 ["at0160"] = <
                     text        = <"Assessment status">
                     description = <"Whether the 'Optical flow - motionless' condition was performed.">
-                >
-                ["at0161"] = <
-                    text        = <"Reason not performed">
-                    description = <"Reason the 'Optical flow - motionless' condition was not performed or was only partially performed.">
                 >
                 ["at0162"] = <
                     text        = <"VAS score">
@@ -558,10 +494,6 @@ ontology
                     text        = <"Assessment status">
                     description = <"Whether the 'Optical flow - forward direction' condition was performed.">
                 >
-                ["at0171"] = <
-                    text        = <"Reason not performed">
-                    description = <"Reason the 'Optical flow - forward direction' condition was not performed or was only partially performed.">
-                >
                 ["at0172"] = <
                     text        = <"VAS score">
                     description = <"Patient-rated intensity of symptoms (e.g. dizziness, disorientation or discomfort) during the 'Optical flow - forward direction' condition, on a visual analog scale (VAS) from 0 (no symptoms) to 10 (the most severe symptoms).">
@@ -577,10 +509,6 @@ ontology
                 ["at0180"] = <
                     text        = <"Assessment status">
                     description = <"Whether the 'Optical flow - backward direction' condition was performed.">
-                >
-                ["at0181"] = <
-                    text        = <"Reason not performed">
-                    description = <"Reason the 'Optical flow - backward direction' condition was not performed or was only partially performed.">
                 >
                 ["at0182"] = <
                     text        = <"VAS score">
