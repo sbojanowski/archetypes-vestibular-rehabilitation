@@ -42,7 +42,7 @@ Create OpenEHR template for Visual Motion Sensitivity named PVR_Visual_Motion_Se
 ### CrowdVR VAS Assessment
 
 #### Prompt
-Create OpenEHR archetype named crowd_vr_assessment based on Observation OpenEHR reference model class containing 6 assessment items for CrovdVR assessment performed using Virtualis CrowdVR virtual reality application. Items in the assessment are as following:
+Create OpenEHR archetype named crowd_vr_assessment based on Observation OpenEHR reference model class containing 6 items for assessment performed using Virtualis CrowdVR virtual reality application. Items in the assessment are as following:
 1. Shop environment
 2. Narrow corridor environment
 3. Shopping center ground floor environment
@@ -59,4 +59,23 @@ OBSERVATION  openEHR-EHR-OBSERVATION.<your_assessment>.v0
          ├─ ELEMENT "VAS score"           DV_QUANTITY    [0..1]
          │     property: Qualified real, units "1", range 0..10, precision 0 or 1
          └─ ELEMENT "Comment"             DV_TEXT        [0..1]
-Create OpenEHR template for CrowdVR Assessment named PVR_Crowd_VR_Assessment based on Encounter, containing Visual Motion Sensitivity assessment an the only encounter item.
+Create OpenEHR template for CrowdVR Assessment named PVR_Crowd_VR_Assessment based on Encounter, containing CrowdVR assessment an the only encounter item.
+
+### EscalatorVR VAS Assessment
+
+#### Prompt
+Create OpenEHR archetype named escalator_vr_assessment based on Observation OpenEHR reference model class containing 2 items for assessment performed using Virtualis EscalatorVR virtual reality application. Items in the assessment are as following:
+- Observing a moving escalator at low speed
+- Observing a moving escalator at high speed
+For each assessment item use this OpenEHR structure:
+OBSERVATION  openEHR-EHR-OBSERVATION.<your_assessment>.v0
+└─ data: HISTORY
+   └─ events: EVENT  (time = when the assessment was done)
+      └─ data: ITEM_TREE
+         ├─ ELEMENT "Assessment status"   DV_CODED_TEXT  [0..1]
+         │     local codes: performed | not performed | partially performed
+         ├─ ELEMENT "VAS score"           DV_QUANTITY    [0..1]
+         │     property: Qualified real, units "1", range 0..10, precision 0 or 1
+         └─ ELEMENT "Comment"             DV_TEXT        [0..1]
+Create OpenEHR template for EscalatorVR Assessment named PVR_Escalator_VR_Assessment based on Encounter, containing EscalatorVR assessment as the only encounter item.
+

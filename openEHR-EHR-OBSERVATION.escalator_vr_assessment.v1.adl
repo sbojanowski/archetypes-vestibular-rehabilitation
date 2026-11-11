@@ -1,0 +1,249 @@
+archetype (adl_version=1.4; uid=ab621bae-7f3c-484a-b231-f1ddeea9ccf3)
+    openEHR-EHR-OBSERVATION.escalator_vr_assessment.v1
+
+concept
+    [at0000]
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"]         = <"openEHR Modeller">
+        ["date"]         = <"2026-11-11">
+        ["organisation"] = <"">
+        ["email"]        = <"">
+    >
+    details = <
+        ["en"] = <
+            language    = <[ISO_639-1::en]>
+            purpose     = <"To record the results of an EscalatorVR assessment performed using the Virtualis EscalatorVR virtual reality application, in which the patient rates the intensity of symptoms provoked by observing a moving escalator.">
+            use         = <"Use to record the patient's symptom ratings for the two conditions presented by the Virtualis EscalatorVR virtual reality application: observing a moving escalator at low speed and at high speed. For each condition, record whether it was performed, the symptom rating on a visual analog scale (VAS) from 0 (no symptoms) to 10 (the most severe symptoms), and an optional comment. Repeat the assessment over the course of vestibular rehabilitation to monitor change in symptoms provoked by escalator motion.">
+            misuse      = <"Not a diagnostic tool; use as part of a comprehensive vestibular assessment. Not intended to record results of assessments performed with other applications or stimulus sets, whose conditions are not equivalent.">
+            copyright   = <"">
+            keywords    = <"EscalatorVR","escalator","visual vertigo","visually induced dizziness","virtual reality","Virtualis","VAS","vestibular rehabilitation">
+        >
+    >
+    lifecycle_state = <"in_development">
+    other_details = <
+        ["licence"]                = <"Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)">
+        ["custodian_organisation"] = <"openEHR Foundation">
+        ["references"]             = <"">
+        ["original_namespace"]     = <"org.openehr">
+        ["MD5-CAM-1.0.1"]          = <"">
+    >
+
+definition
+    OBSERVATION[at0000] matches {                        -- EscalatorVR assessment
+        data matches {
+            HISTORY[at0001] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    POINT_EVENT[at0002] occurrences matches {0..1} matches {   -- Any point in time event
+                        data matches {
+                            ITEM_TREE[at0003] matches {
+                                items cardinality matches {0..*; unordered} matches {
+
+                                    -- =====================================================
+                                    -- ITEM 1: Observing a moving escalator at low speed
+                                    -- =====================================================
+                                    CLUSTER[at0010] occurrences matches {0..1} matches {   -- Observing a moving escalator at low speed
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[at0110] occurrences matches {0..1} matches {   -- Assessment status
+                                                value matches {
+                                                    DV_CODED_TEXT matches {
+                                                        defining_code matches {
+                                                            [local::
+                                                            at0101,    -- Performed
+                                                            at0102,    -- Not performed
+                                                            at0103]    -- Partially performed
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0112] occurrences matches {0..1} matches {   -- VAS score
+                                                value matches {
+                                                    DV_QUANTITY matches {
+                                                        property matches {[openehr::380]}
+                                                        units matches {"1"}
+                                                        magnitude matches {|0.0..10.0|}
+                                                        precision matches {|0..1|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0113] occurrences matches {0..1} matches {   -- Comment
+                                                value matches {
+                                                    DV_TEXT matches {*}
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    -- =====================================================
+                                    -- ITEM 2: Observing a moving escalator at high speed
+                                    -- =====================================================
+                                    CLUSTER[at0011] occurrences matches {0..1} matches {   -- Observing a moving escalator at high speed
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[at0120] occurrences matches {0..1} matches {   -- Assessment status
+                                                value matches {
+                                                    DV_CODED_TEXT matches {
+                                                        defining_code matches {
+                                                            [local::
+                                                            at0101,    -- Performed
+                                                            at0102,    -- Not performed
+                                                            at0103]    -- Partially performed
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0122] occurrences matches {0..1} matches {   -- VAS score
+                                                value matches {
+                                                    DV_QUANTITY matches {
+                                                        property matches {[openehr::380]}
+                                                        units matches {"1"}
+                                                        magnitude matches {|0.0..10.0|}
+                                                        precision matches {|0..1|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0123] occurrences matches {0..1} matches {   -- Comment
+                                                value matches {
+                                                    DV_TEXT matches {*}
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    ELEMENT[at0070] occurrences matches {0..1} matches {   -- Comment
+                                        value matches {
+                                            DV_TEXT matches {*}
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[at0005] matches {
+                items cardinality matches {0..*; unordered} matches {
+
+                    ELEMENT[at0080] occurrences matches {0..1} matches {   -- Application version
+                        value matches {
+                            DV_TEXT matches {*}
+                        }
+                    }
+
+                    ELEMENT[at0081] occurrences matches {0..1} matches {   -- Virtual reality device
+                        value matches {
+                            DV_TEXT matches {*}
+                        }
+                    }
+
+                    allow_archetype CLUSTER[at0090] occurrences matches {0..*} matches {   -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+
+                }
+            }
+        }
+    }
+
+ontology
+    term_definitions = <
+        ["en"] = <
+            items = <
+
+                -- ---- Archetype root ----
+                ["at0000"] = <
+                    text        = <"EscalatorVR assessment">
+                    description = <"Patient-rated intensity of symptoms provoked by observing a moving escalator in the Virtualis EscalatorVR virtual reality application.">
+                >
+                ["at0001"] = <
+                    text        = <"History">
+                    description = <"Event series in the OBSERVATION.">
+                >
+                ["at0002"] = <
+                    text        = <"Any point in time event">
+                    description = <"Default, unspecified point in time event which may be more explicitly defined in a template or at run-time.">
+                >
+                ["at0003"] = <
+                    text        = <"Item tree">
+                    description = <"@ internal @">
+                >
+                ["at0005"] = <
+                    text        = <"Item tree">
+                    description = <"@ internal @">
+                >
+
+                -- ---- Items ----
+                ["at0010"] = <
+                    text        = <"Observing a moving escalator at low speed">
+                    description = <"Assessment of symptoms provoked by observing a virtual escalator moving at low speed in the Virtualis EscalatorVR virtual reality application.">
+                >
+                ["at0110"] = <
+                    text        = <"Assessment status">
+                    description = <"Whether the 'Observing a moving escalator at low speed' condition was performed.">
+                >
+                ["at0112"] = <
+                    text        = <"VAS score">
+                    description = <"Patient-rated intensity of symptoms (e.g. dizziness, disorientation or discomfort) during the 'Observing a moving escalator at low speed' condition, on a visual analog scale (VAS) from 0 (no symptoms) to 10 (the most severe symptoms).">
+                >
+                ["at0113"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the 'Observing a moving escalator at low speed' condition not captured in other fields.">
+                >
+                ["at0011"] = <
+                    text        = <"Observing a moving escalator at high speed">
+                    description = <"Assessment of symptoms provoked by observing a virtual escalator moving at high speed in the Virtualis EscalatorVR virtual reality application.">
+                >
+                ["at0120"] = <
+                    text        = <"Assessment status">
+                    description = <"Whether the 'Observing a moving escalator at high speed' condition was performed.">
+                >
+                ["at0122"] = <
+                    text        = <"VAS score">
+                    description = <"Patient-rated intensity of symptoms (e.g. dizziness, disorientation or discomfort) during the 'Observing a moving escalator at high speed' condition, on a visual analog scale (VAS) from 0 (no symptoms) to 10 (the most severe symptoms).">
+                >
+                ["at0123"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the 'Observing a moving escalator at high speed' condition not captured in other fields.">
+                >
+                ["at0101"] = <
+                    text        = <"Performed">
+                    description = <"The condition was presented and completed.">
+                >
+                ["at0102"] = <
+                    text        = <"Not performed">
+                    description = <"The condition was not presented or not started.">
+                >
+                ["at0103"] = <
+                    text        = <"Partially performed">
+                    description = <"The condition was started but not completed, e.g. stopped because of symptoms.">
+                >
+
+                ["at0070"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the EscalatorVR assessment not captured in other fields.">
+                >
+
+                -- ---- Protocol ----
+                ["at0080"] = <
+                    text        = <"Application version">
+                    description = <"Version of the Virtualis EscalatorVR virtual reality application used for the assessment.">
+                >
+                ["at0081"] = <
+                    text        = <"Virtual reality device">
+                    description = <"Make and model of the virtual reality headset used to present the stimuli.">
+                >
+                ["at0090"] = <
+                    text        = <"Extension">
+                    description = <"Additional information required to capture local content or to align with other reference models or formalisms.">
+                >
+
+            >
+        >
+    >
