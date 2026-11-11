@@ -18,7 +18,7 @@ description
         ["en"] = <
             language    = <[ISO_639-1::en]>
             purpose     = <"To record the results of the Visual Vertigo Analog Scale (VVAS), a nine-item self-report instrument that quantifies the severity of visually induced dizziness or disorientation provoked by specific visual environments and motion stimuli.">
-            use         = <"Use to record VVAS responses in patients presenting with visual vertigo, visually induced dizziness, or vestibular dysfunction with visual dependency. The respondent indicates the amount of dizziness experienced in each of nine situations by marking a 10 cm horizontal visual analog scale (VAS) anchored at 0 (no dizziness) and 10 (the most dizziness). Each item is scored 0–10 by measuring the position of the mark from the left anchor. The total score is the mean of the completed item scores multiplied by 10, giving a value between 0 and 100. Administer before and after vestibular rehabilitation to monitor treatment response.">
+            use         = <"Use to record VVAS responses in patients presenting with visual vertigo, visually induced dizziness, or vestibular dysfunction with visual dependency. The respondent indicates the amount of dizziness experienced in each of nine situations by marking a 10 cm horizontal visual analog scale (VAS) anchored at 0 (no dizziness) and 10 (the most dizziness). For each item, record whether it was completed, the VAS score (0–10, measured as the position of the mark from the left anchor) and an optional comment. The total score is the mean of the completed item scores multiplied by 10, giving a value between 0 and 100. Administer before and after vestibular rehabilitation to monitor treatment response.">
             misuse      = <"Not intended for children under 12 years without specific validation. Not a diagnostic tool; use as part of a comprehensive vestibular and neuro-otological assessment. Do not use as a substitute for the Dizziness Handicap Inventory (DHI); the two scales measure complementary but distinct constructs.">
             copyright   = <"© Dannenbaum E, Chilingaryan G, Fung J. Visual vertigo analogue scale: an assessment questionnaire for visual vertigo. Journal of Vestibular Research. 2011;21(3):153-159. Reproduced under license from IOS Press.">
             keywords    = <"visual vertigo","visually induced dizziness","vestibular","VAS","VVAS","visual dependency","motion sickness","balance">
@@ -46,127 +46,316 @@ definition
                                 items cardinality matches {0..*; unordered} matches {
 
                                     -- =====================================================
-                                    -- ITEM 1
+                                    -- ITEM 1: Walking through a supermarket aisle
                                     -- =====================================================
-                                    ELEMENT[at0010] occurrences matches {0..1} matches {   -- Item 1: Walking through a supermarket aisle
-                                        value matches {
-                                            DV_QUANTITY matches {
-                                                property matches {[openehr::380]}
-                                                units matches {"1"}
-                                                magnitude matches {|0.0..10.0|}
-                                                precision matches {|1|}
+                                    CLUSTER[at0010] occurrences matches {0..1} matches {   -- Item 1: Walking through a supermarket aisle
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[at0110] occurrences matches {0..1} matches {   -- Assessment status
+                                                value matches {
+                                                    DV_CODED_TEXT matches {
+                                                        defining_code matches {
+                                                            [local::
+                                                            at0101,    -- Performed
+                                                            at0102,    -- Not performed
+                                                            at0103]    -- Partially performed
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0112] occurrences matches {0..1} matches {   -- VAS score
+                                                value matches {
+                                                    DV_QUANTITY matches {
+                                                        property matches {[openehr::380]}
+                                                        units matches {"1"}
+                                                        magnitude matches {|0.0..10.0|}
+                                                        precision matches {|0..1|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0113] occurrences matches {0..1} matches {   -- Comment
+                                                value matches {
+                                                    DV_TEXT matches {*}
+                                                }
                                             }
                                         }
                                     }
 
                                     -- =====================================================
-                                    -- ITEM 2
+                                    -- ITEM 2: Being a passenger in a car
                                     -- =====================================================
-                                    ELEMENT[at0011] occurrences matches {0..1} matches {   -- Item 2: Being a passenger in a car
-                                        value matches {
-                                            DV_QUANTITY matches {
-                                                property matches {[openehr::380]}
-                                                units matches {"1"}
-                                                magnitude matches {|0.0..10.0|}
-                                                precision matches {|1|}
+                                    CLUSTER[at0011] occurrences matches {0..1} matches {   -- Item 2: Being a passenger in a car
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[at0120] occurrences matches {0..1} matches {   -- Assessment status
+                                                value matches {
+                                                    DV_CODED_TEXT matches {
+                                                        defining_code matches {
+                                                            [local::
+                                                            at0101,    -- Performed
+                                                            at0102,    -- Not performed
+                                                            at0103]    -- Partially performed
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0122] occurrences matches {0..1} matches {   -- VAS score
+                                                value matches {
+                                                    DV_QUANTITY matches {
+                                                        property matches {[openehr::380]}
+                                                        units matches {"1"}
+                                                        magnitude matches {|0.0..10.0|}
+                                                        precision matches {|0..1|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0123] occurrences matches {0..1} matches {   -- Comment
+                                                value matches {
+                                                    DV_TEXT matches {*}
+                                                }
                                             }
                                         }
                                     }
 
                                     -- =====================================================
-                                    -- ITEM 3
+                                    -- ITEM 3: Being under fluorescent lights
                                     -- =====================================================
-                                    ELEMENT[at0012] occurrences matches {0..1} matches {   -- Item 3: Being under fluorescent lights
-                                        value matches {
-                                            DV_QUANTITY matches {
-                                                property matches {[openehr::380]}
-                                                units matches {"1"}
-                                                magnitude matches {|0.0..10.0|}
-                                                precision matches {|1|}
+                                    CLUSTER[at0012] occurrences matches {0..1} matches {   -- Item 3: Being under fluorescent lights
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[at0130] occurrences matches {0..1} matches {   -- Assessment status
+                                                value matches {
+                                                    DV_CODED_TEXT matches {
+                                                        defining_code matches {
+                                                            [local::
+                                                            at0101,    -- Performed
+                                                            at0102,    -- Not performed
+                                                            at0103]    -- Partially performed
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0132] occurrences matches {0..1} matches {   -- VAS score
+                                                value matches {
+                                                    DV_QUANTITY matches {
+                                                        property matches {[openehr::380]}
+                                                        units matches {"1"}
+                                                        magnitude matches {|0.0..10.0|}
+                                                        precision matches {|0..1|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0133] occurrences matches {0..1} matches {   -- Comment
+                                                value matches {
+                                                    DV_TEXT matches {*}
+                                                }
                                             }
                                         }
                                     }
 
                                     -- =====================================================
-                                    -- ITEM 4
+                                    -- ITEM 4: Watching traffic at a busy intersection
                                     -- =====================================================
-                                    ELEMENT[at0013] occurrences matches {0..1} matches {   -- Item 4: Watching traffic at a busy intersection
-                                        value matches {
-                                            DV_QUANTITY matches {
-                                                property matches {[openehr::380]}
-                                                units matches {"1"}
-                                                magnitude matches {|0.0..10.0|}
-                                                precision matches {|1|}
+                                    CLUSTER[at0013] occurrences matches {0..1} matches {   -- Item 4: Watching traffic at a busy intersection
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[at0140] occurrences matches {0..1} matches {   -- Assessment status
+                                                value matches {
+                                                    DV_CODED_TEXT matches {
+                                                        defining_code matches {
+                                                            [local::
+                                                            at0101,    -- Performed
+                                                            at0102,    -- Not performed
+                                                            at0103]    -- Partially performed
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0142] occurrences matches {0..1} matches {   -- VAS score
+                                                value matches {
+                                                    DV_QUANTITY matches {
+                                                        property matches {[openehr::380]}
+                                                        units matches {"1"}
+                                                        magnitude matches {|0.0..10.0|}
+                                                        precision matches {|0..1|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0143] occurrences matches {0..1} matches {   -- Comment
+                                                value matches {
+                                                    DV_TEXT matches {*}
+                                                }
                                             }
                                         }
                                     }
 
                                     -- =====================================================
-                                    -- ITEM 5
+                                    -- ITEM 5: Walking through a shopping mall
                                     -- =====================================================
-                                    ELEMENT[at0014] occurrences matches {0..1} matches {   -- Item 5: Walking through a shopping mall
-                                        value matches {
-                                            DV_QUANTITY matches {
-                                                property matches {[openehr::380]}
-                                                units matches {"1"}
-                                                magnitude matches {|0.0..10.0|}
-                                                precision matches {|1|}
+                                    CLUSTER[at0014] occurrences matches {0..1} matches {   -- Item 5: Walking through a shopping mall
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[at0150] occurrences matches {0..1} matches {   -- Assessment status
+                                                value matches {
+                                                    DV_CODED_TEXT matches {
+                                                        defining_code matches {
+                                                            [local::
+                                                            at0101,    -- Performed
+                                                            at0102,    -- Not performed
+                                                            at0103]    -- Partially performed
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0152] occurrences matches {0..1} matches {   -- VAS score
+                                                value matches {
+                                                    DV_QUANTITY matches {
+                                                        property matches {[openehr::380]}
+                                                        units matches {"1"}
+                                                        magnitude matches {|0.0..10.0|}
+                                                        precision matches {|0..1|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0153] occurrences matches {0..1} matches {   -- Comment
+                                                value matches {
+                                                    DV_TEXT matches {*}
+                                                }
                                             }
                                         }
                                     }
 
                                     -- =====================================================
-                                    -- ITEM 6
+                                    -- ITEM 6: Going down an escalator
                                     -- =====================================================
-                                    ELEMENT[at0015] occurrences matches {0..1} matches {   -- Item 6: Going down an escalator
-                                        value matches {
-                                            DV_QUANTITY matches {
-                                                property matches {[openehr::380]}
-                                                units matches {"1"}
-                                                magnitude matches {|0.0..10.0|}
-                                                precision matches {|1|}
+                                    CLUSTER[at0015] occurrences matches {0..1} matches {   -- Item 6: Going down an escalator
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[at0160] occurrences matches {0..1} matches {   -- Assessment status
+                                                value matches {
+                                                    DV_CODED_TEXT matches {
+                                                        defining_code matches {
+                                                            [local::
+                                                            at0101,    -- Performed
+                                                            at0102,    -- Not performed
+                                                            at0103]    -- Partially performed
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0162] occurrences matches {0..1} matches {   -- VAS score
+                                                value matches {
+                                                    DV_QUANTITY matches {
+                                                        property matches {[openehr::380]}
+                                                        units matches {"1"}
+                                                        magnitude matches {|0.0..10.0|}
+                                                        precision matches {|0..1|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0163] occurrences matches {0..1} matches {   -- Comment
+                                                value matches {
+                                                    DV_TEXT matches {*}
+                                                }
                                             }
                                         }
                                     }
 
                                     -- =====================================================
-                                    -- ITEM 7
+                                    -- ITEM 7: Watching a movie at the movie theatre
                                     -- =====================================================
-                                    ELEMENT[at0016] occurrences matches {0..1} matches {   -- Item 7: Watching a movie at the movie theatre
-                                        value matches {
-                                            DV_QUANTITY matches {
-                                                property matches {[openehr::380]}
-                                                units matches {"1"}
-                                                magnitude matches {|0.0..10.0|}
-                                                precision matches {|1|}
+                                    CLUSTER[at0016] occurrences matches {0..1} matches {   -- Item 7: Watching a movie at the movie theatre
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[at0170] occurrences matches {0..1} matches {   -- Assessment status
+                                                value matches {
+                                                    DV_CODED_TEXT matches {
+                                                        defining_code matches {
+                                                            [local::
+                                                            at0101,    -- Performed
+                                                            at0102,    -- Not performed
+                                                            at0103]    -- Partially performed
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0172] occurrences matches {0..1} matches {   -- VAS score
+                                                value matches {
+                                                    DV_QUANTITY matches {
+                                                        property matches {[openehr::380]}
+                                                        units matches {"1"}
+                                                        magnitude matches {|0.0..10.0|}
+                                                        precision matches {|0..1|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0173] occurrences matches {0..1} matches {   -- Comment
+                                                value matches {
+                                                    DV_TEXT matches {*}
+                                                }
                                             }
                                         }
                                     }
 
                                     -- =====================================================
-                                    -- ITEM 8
+                                    -- ITEM 8: Walking over a patterned floor
                                     -- =====================================================
-                                    ELEMENT[at0017] occurrences matches {0..1} matches {   -- Item 8: Walking over a patterned floor
-                                        value matches {
-                                            DV_QUANTITY matches {
-                                                property matches {[openehr::380]}
-                                                units matches {"1"}
-                                                magnitude matches {|0.0..10.0|}
-                                                precision matches {|1|}
+                                    CLUSTER[at0017] occurrences matches {0..1} matches {   -- Item 8: Walking over a patterned floor
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[at0180] occurrences matches {0..1} matches {   -- Assessment status
+                                                value matches {
+                                                    DV_CODED_TEXT matches {
+                                                        defining_code matches {
+                                                            [local::
+                                                            at0101,    -- Performed
+                                                            at0102,    -- Not performed
+                                                            at0103]    -- Partially performed
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0182] occurrences matches {0..1} matches {   -- VAS score
+                                                value matches {
+                                                    DV_QUANTITY matches {
+                                                        property matches {[openehr::380]}
+                                                        units matches {"1"}
+                                                        magnitude matches {|0.0..10.0|}
+                                                        precision matches {|0..1|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0183] occurrences matches {0..1} matches {   -- Comment
+                                                value matches {
+                                                    DV_TEXT matches {*}
+                                                }
                                             }
                                         }
                                     }
 
                                     -- =====================================================
-                                    -- ITEM 9
+                                    -- ITEM 9: Watching action television
                                     -- =====================================================
-                                    ELEMENT[at0018] occurrences matches {0..1} matches {   -- Item 9: Watching action television
-                                        value matches {
-                                            DV_QUANTITY matches {
-                                                property matches {[openehr::380]}
-                                                units matches {"1"}
-                                                magnitude matches {|0.0..10.0|}
-                                                precision matches {|1|}
+                                    CLUSTER[at0018] occurrences matches {0..1} matches {   -- Item 9: Watching action television
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[at0190] occurrences matches {0..1} matches {   -- Assessment status
+                                                value matches {
+                                                    DV_CODED_TEXT matches {
+                                                        defining_code matches {
+                                                            [local::
+                                                            at0101,    -- Performed
+                                                            at0102,    -- Not performed
+                                                            at0103]    -- Partially performed
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0192] occurrences matches {0..1} matches {   -- VAS score
+                                                value matches {
+                                                    DV_QUANTITY matches {
+                                                        property matches {[openehr::380]}
+                                                        units matches {"1"}
+                                                        magnitude matches {|0.0..10.0|}
+                                                        precision matches {|0..1|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[at0193] occurrences matches {0..1} matches {   -- Comment
+                                                value matches {
+                                                    DV_TEXT matches {*}
+                                                }
                                             }
                                         }
                                     }
@@ -338,39 +527,159 @@ ontology
                 -- ---- Items ----
                 ["at0010"] = <
                     text        = <"Item 1: Walking through a supermarket aisle">
+                    description = <"VVAS item for the situation 'Walking through a supermarket aisle'.">
+                >
+                ["at0110"] = <
+                    text        = <"Assessment status">
+                    description = <"Whether item 'Walking through a supermarket aisle' was completed by the respondent.">
+                >
+                ["at0112"] = <
+                    text        = <"VAS score">
                     description = <"Amount of dizziness experienced when walking through a supermarket aisle. Rated by marking a 10 cm line anchored at 0 (no dizziness) and 10 (the most dizziness).">
+                >
+                ["at0113"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about item 'Walking through a supermarket aisle' not captured in other fields.">
                 >
                 ["at0011"] = <
                     text        = <"Item 2: Being a passenger in a car">
+                    description = <"VVAS item for the situation 'Being a passenger in a car'.">
+                >
+                ["at0120"] = <
+                    text        = <"Assessment status">
+                    description = <"Whether item 'Being a passenger in a car' was completed by the respondent.">
+                >
+                ["at0122"] = <
+                    text        = <"VAS score">
                     description = <"Amount of dizziness experienced when being a passenger in a car. Rated by marking a 10 cm line anchored at 0 (no dizziness) and 10 (the most dizziness).">
+                >
+                ["at0123"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about item 'Being a passenger in a car' not captured in other fields.">
                 >
                 ["at0012"] = <
                     text        = <"Item 3: Being under fluorescent lights">
+                    description = <"VVAS item for the situation 'Being under fluorescent lights'.">
+                >
+                ["at0130"] = <
+                    text        = <"Assessment status">
+                    description = <"Whether item 'Being under fluorescent lights' was completed by the respondent.">
+                >
+                ["at0132"] = <
+                    text        = <"VAS score">
                     description = <"Amount of dizziness experienced when being under fluorescent lights. Rated by marking a 10 cm line anchored at 0 (no dizziness) and 10 (the most dizziness).">
+                >
+                ["at0133"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about item 'Being under fluorescent lights' not captured in other fields.">
                 >
                 ["at0013"] = <
                     text        = <"Item 4: Watching traffic at a busy intersection">
+                    description = <"VVAS item for the situation 'Watching traffic at a busy intersection'.">
+                >
+                ["at0140"] = <
+                    text        = <"Assessment status">
+                    description = <"Whether item 'Watching traffic at a busy intersection' was completed by the respondent.">
+                >
+                ["at0142"] = <
+                    text        = <"VAS score">
                     description = <"Amount of dizziness experienced when watching traffic at a busy intersection. Rated by marking a 10 cm line anchored at 0 (no dizziness) and 10 (the most dizziness).">
+                >
+                ["at0143"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about item 'Watching traffic at a busy intersection' not captured in other fields.">
                 >
                 ["at0014"] = <
                     text        = <"Item 5: Walking through a shopping mall">
+                    description = <"VVAS item for the situation 'Walking through a shopping mall'.">
+                >
+                ["at0150"] = <
+                    text        = <"Assessment status">
+                    description = <"Whether item 'Walking through a shopping mall' was completed by the respondent.">
+                >
+                ["at0152"] = <
+                    text        = <"VAS score">
                     description = <"Amount of dizziness experienced when walking through a shopping mall. Rated by marking a 10 cm line anchored at 0 (no dizziness) and 10 (the most dizziness).">
+                >
+                ["at0153"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about item 'Walking through a shopping mall' not captured in other fields.">
                 >
                 ["at0015"] = <
                     text        = <"Item 6: Going down an escalator">
+                    description = <"VVAS item for the situation 'Going down an escalator'.">
+                >
+                ["at0160"] = <
+                    text        = <"Assessment status">
+                    description = <"Whether item 'Going down an escalator' was completed by the respondent.">
+                >
+                ["at0162"] = <
+                    text        = <"VAS score">
                     description = <"Amount of dizziness experienced when going down an escalator. Rated by marking a 10 cm line anchored at 0 (no dizziness) and 10 (the most dizziness).">
+                >
+                ["at0163"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about item 'Going down an escalator' not captured in other fields.">
                 >
                 ["at0016"] = <
                     text        = <"Item 7: Watching a movie at the movie theatre">
+                    description = <"VVAS item for the situation 'Watching a movie at the movie theatre'.">
+                >
+                ["at0170"] = <
+                    text        = <"Assessment status">
+                    description = <"Whether item 'Watching a movie at the movie theatre' was completed by the respondent.">
+                >
+                ["at0172"] = <
+                    text        = <"VAS score">
                     description = <"Amount of dizziness experienced when watching a movie at the movie theatre. Rated by marking a 10 cm line anchored at 0 (no dizziness) and 10 (the most dizziness).">
+                >
+                ["at0173"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about item 'Watching a movie at the movie theatre' not captured in other fields.">
                 >
                 ["at0017"] = <
                     text        = <"Item 8: Walking over a patterned floor">
+                    description = <"VVAS item for the situation 'Walking over a patterned floor'.">
+                >
+                ["at0180"] = <
+                    text        = <"Assessment status">
+                    description = <"Whether item 'Walking over a patterned floor' was completed by the respondent.">
+                >
+                ["at0182"] = <
+                    text        = <"VAS score">
                     description = <"Amount of dizziness experienced when walking over a patterned floor. Rated by marking a 10 cm line anchored at 0 (no dizziness) and 10 (the most dizziness).">
+                >
+                ["at0183"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about item 'Walking over a patterned floor' not captured in other fields.">
                 >
                 ["at0018"] = <
                     text        = <"Item 9: Watching action television">
+                    description = <"VVAS item for the situation 'Watching action television'.">
+                >
+                ["at0190"] = <
+                    text        = <"Assessment status">
+                    description = <"Whether item 'Watching action television' was completed by the respondent.">
+                >
+                ["at0192"] = <
+                    text        = <"VAS score">
                     description = <"Amount of dizziness experienced when watching action television. Rated by marking a 10 cm line anchored at 0 (no dizziness) and 10 (the most dizziness).">
+                >
+                ["at0193"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about item 'Watching action television' not captured in other fields.">
+                >
+                ["at0101"] = <
+                    text        = <"Performed">
+                    description = <"The item was rated by the respondent.">
+                >
+                ["at0102"] = <
+                    text        = <"Not performed">
+                    description = <"The item was not rated, e.g. because the situation is not applicable to the respondent.">
+                >
+                ["at0103"] = <
+                    text        = <"Partially performed">
+                    description = <"The item was only partially completed, e.g. the mark on the scale was ambiguous or the respondent was unsure.">
                 >
 
                 -- ---- Scores ----
