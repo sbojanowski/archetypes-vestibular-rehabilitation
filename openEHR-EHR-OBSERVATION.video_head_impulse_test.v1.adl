@@ -1,0 +1,1601 @@
+archetype (adl_version=1.4; uid=20130ca3-7317-4453-ab89-943d86252bd3)
+    openEHR-EHR-OBSERVATION.video_head_impulse_test.v1
+
+concept
+    [at0000]
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"]         = <"openEHR Modeller">
+        ["date"]         = <"2026-11-11">
+        ["organisation"] = <"">
+        ["email"]        = <"">
+    >
+    details = <
+        ["en"] = <
+            language    = <[ISO_639-1::en]>
+            purpose     = <"To record the outcome of a video head impulse test (vHIT) examination, covering head impulse paradigm (HIMP) testing of the lateral canals and of the LARP and RALP vertical canal planes, and suppression head impulse paradigm (SHIMP) testing.">
+            use         = <"Use to record vHIT results for each tested semicircular canal: VOR gain, number of valid impulses, mean peak head velocity, presence and characteristics of catch-up saccades, and the clinical interpretation. Results are grouped by test: lateral canals, LARP plane (left anterior and right posterior canals) and RALP plane (right anterior and left posterior canals) using the head impulse paradigm (HIMP), and SHIMP for the lateral canals. Each test records whether it was performed and the gain asymmetry between the two canals tested. The gain calculation method, device and recorded eye are recorded in the protocol, because gain values from different methods and devices are not directly comparable. Recorded traces may be attached using the Multimedia representation slot.">
+            misuse      = <"Not to be used for the bedside (clinical) head impulse test without video-oculography; record that with an examination archetype. Not intended to record caloric, rotational chair or VEMP test results.">
+            copyright   = <"">
+            keywords    = <"vHIT","video head impulse test","head impulse test","HIT","HIMP","SHIMP","VOR","vestibulo-ocular reflex","VOR gain","semicircular canal","LARP","RALP","catch-up saccades","covert saccades","overt saccades","vestibular">
+        >
+    >
+    lifecycle_state = <"in_development">
+    other_details = <
+        ["licence"]                = <"Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)">
+        ["custodian_organisation"] = <"openEHR Foundation">
+        ["references"]             = <"Halmagyi GM, Curthoys IS. A clinical sign of canal paresis. Arch Neurol. 1988;45(7):737-739.
+MacDougall HG, Weber KP, McGarvie LA, Halmagyi GM, Curthoys IS. The video head impulse test: diagnostic accuracy in peripheral vestibulopathy. Neurology. 2009;73(14):1134-1141.
+MacDougall HG, McGarvie LA, Halmagyi GM, Rogers SJ, Manzari L, Burgess AM, Curthoys IS, Weber KP. A new saccadic indicator of peripheral vestibular function based on the video head impulse test. Neurology. 2016;87(4):410-418.">
+        ["original_namespace"]     = <"org.openehr">
+        ["MD5-CAM-1.0.1"]          = <"">
+    >
+
+definition
+    OBSERVATION[at0000] matches {                        -- Video Head Impulse Test (vHIT)
+        data matches {
+            HISTORY[at0001] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    POINT_EVENT[at0002] occurrences matches {0..1} matches {   -- Any point in time event
+                        data matches {
+                            ITEM_TREE[at0003] matches {
+                                items cardinality matches {0..*; unordered} matches {
+
+                                CLUSTER[at0100] occurrences matches {0..1} matches {   -- Lateral canals
+                                    items cardinality matches {1..*; unordered} matches {
+                                        ELEMENT[at0101] occurrences matches {0..1} matches {   -- Test status
+                                            value matches {
+                                                DV_CODED_TEXT matches {
+                                                    defining_code matches {
+                                                        [local::
+                                                        at0901,    -- Performed
+                                                        at0902,    -- Not performed
+                                                        at0903]    -- Partially performed
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        CLUSTER[at0110] occurrences matches {0..1} matches {   -- Left lateral canal
+                                            items cardinality matches {1..*; unordered} matches {
+                                                ELEMENT[at0111] occurrences matches {0..1} matches {   -- VOR gain
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..3.0|}
+                                                            precision matches {|2|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0112] occurrences matches {0..1} matches {   -- Number of valid impulses
+                                                    value matches {
+                                                        DV_COUNT matches {
+                                                            magnitude matches {|>=0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0113] occurrences matches {0..1} matches {   -- Mean peak head velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0114] occurrences matches {0..1} matches {   -- Covert saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0115] occurrences matches {0..1} matches {   -- Overt saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0116] occurrences matches {0..1} matches {   -- Mean saccade latency
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::128]}
+                                                            units matches {"ms"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0117] occurrences matches {0..1} matches {   -- Mean saccade peak velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0118] occurrences matches {0..1} matches {   -- PR score
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..100.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0119] occurrences matches {0..1} matches {   -- Interpretation
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0921,    -- Normal
+                                                                at0922,    -- Abnormal
+                                                                at0923]    -- Inconclusive
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0120] occurrences matches {0..1} matches {   -- Comment
+                                                    value matches {
+                                                        DV_TEXT matches {*}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        CLUSTER[at0130] occurrences matches {0..1} matches {   -- Right lateral canal
+                                            items cardinality matches {1..*; unordered} matches {
+                                                ELEMENT[at0131] occurrences matches {0..1} matches {   -- VOR gain
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..3.0|}
+                                                            precision matches {|2|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0132] occurrences matches {0..1} matches {   -- Number of valid impulses
+                                                    value matches {
+                                                        DV_COUNT matches {
+                                                            magnitude matches {|>=0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0133] occurrences matches {0..1} matches {   -- Mean peak head velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0134] occurrences matches {0..1} matches {   -- Covert saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0135] occurrences matches {0..1} matches {   -- Overt saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0136] occurrences matches {0..1} matches {   -- Mean saccade latency
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::128]}
+                                                            units matches {"ms"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0137] occurrences matches {0..1} matches {   -- Mean saccade peak velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0138] occurrences matches {0..1} matches {   -- PR score
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..100.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0139] occurrences matches {0..1} matches {   -- Interpretation
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0921,    -- Normal
+                                                                at0922,    -- Abnormal
+                                                                at0923]    -- Inconclusive
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0140] occurrences matches {0..1} matches {   -- Comment
+                                                    value matches {
+                                                        DV_TEXT matches {*}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        ELEMENT[at0102] occurrences matches {0..1} matches {   -- Gain asymmetry
+                                            value matches {
+                                                DV_PROPORTION matches {
+                                                    numerator matches {|0.0..100.0|}
+                                                    denominator matches {|100.0|}
+                                                    type matches {2}
+                                                }
+                                            }
+                                        }
+                                        ELEMENT[at0103] occurrences matches {0..1} matches {   -- Comment
+                                            value matches {
+                                                DV_TEXT matches {*}
+                                            }
+                                        }
+                                    }
+                                }
+
+                                CLUSTER[at0200] occurrences matches {0..1} matches {   -- LARP plane
+                                    items cardinality matches {1..*; unordered} matches {
+                                        ELEMENT[at0201] occurrences matches {0..1} matches {   -- Test status
+                                            value matches {
+                                                DV_CODED_TEXT matches {
+                                                    defining_code matches {
+                                                        [local::
+                                                        at0901,    -- Performed
+                                                        at0902,    -- Not performed
+                                                        at0903]    -- Partially performed
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        CLUSTER[at0210] occurrences matches {0..1} matches {   -- Left anterior canal
+                                            items cardinality matches {1..*; unordered} matches {
+                                                ELEMENT[at0211] occurrences matches {0..1} matches {   -- VOR gain
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..3.0|}
+                                                            precision matches {|2|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0212] occurrences matches {0..1} matches {   -- Number of valid impulses
+                                                    value matches {
+                                                        DV_COUNT matches {
+                                                            magnitude matches {|>=0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0213] occurrences matches {0..1} matches {   -- Mean peak head velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0214] occurrences matches {0..1} matches {   -- Covert saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0215] occurrences matches {0..1} matches {   -- Overt saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0216] occurrences matches {0..1} matches {   -- Mean saccade latency
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::128]}
+                                                            units matches {"ms"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0217] occurrences matches {0..1} matches {   -- Mean saccade peak velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0218] occurrences matches {0..1} matches {   -- PR score
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..100.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0219] occurrences matches {0..1} matches {   -- Interpretation
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0921,    -- Normal
+                                                                at0922,    -- Abnormal
+                                                                at0923]    -- Inconclusive
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0220] occurrences matches {0..1} matches {   -- Comment
+                                                    value matches {
+                                                        DV_TEXT matches {*}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        CLUSTER[at0230] occurrences matches {0..1} matches {   -- Right posterior canal
+                                            items cardinality matches {1..*; unordered} matches {
+                                                ELEMENT[at0231] occurrences matches {0..1} matches {   -- VOR gain
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..3.0|}
+                                                            precision matches {|2|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0232] occurrences matches {0..1} matches {   -- Number of valid impulses
+                                                    value matches {
+                                                        DV_COUNT matches {
+                                                            magnitude matches {|>=0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0233] occurrences matches {0..1} matches {   -- Mean peak head velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0234] occurrences matches {0..1} matches {   -- Covert saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0235] occurrences matches {0..1} matches {   -- Overt saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0236] occurrences matches {0..1} matches {   -- Mean saccade latency
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::128]}
+                                                            units matches {"ms"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0237] occurrences matches {0..1} matches {   -- Mean saccade peak velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0238] occurrences matches {0..1} matches {   -- PR score
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..100.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0239] occurrences matches {0..1} matches {   -- Interpretation
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0921,    -- Normal
+                                                                at0922,    -- Abnormal
+                                                                at0923]    -- Inconclusive
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0240] occurrences matches {0..1} matches {   -- Comment
+                                                    value matches {
+                                                        DV_TEXT matches {*}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        ELEMENT[at0202] occurrences matches {0..1} matches {   -- Gain asymmetry
+                                            value matches {
+                                                DV_PROPORTION matches {
+                                                    numerator matches {|0.0..100.0|}
+                                                    denominator matches {|100.0|}
+                                                    type matches {2}
+                                                }
+                                            }
+                                        }
+                                        ELEMENT[at0203] occurrences matches {0..1} matches {   -- Comment
+                                            value matches {
+                                                DV_TEXT matches {*}
+                                            }
+                                        }
+                                    }
+                                }
+
+                                CLUSTER[at0300] occurrences matches {0..1} matches {   -- RALP plane
+                                    items cardinality matches {1..*; unordered} matches {
+                                        ELEMENT[at0301] occurrences matches {0..1} matches {   -- Test status
+                                            value matches {
+                                                DV_CODED_TEXT matches {
+                                                    defining_code matches {
+                                                        [local::
+                                                        at0901,    -- Performed
+                                                        at0902,    -- Not performed
+                                                        at0903]    -- Partially performed
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        CLUSTER[at0310] occurrences matches {0..1} matches {   -- Right anterior canal
+                                            items cardinality matches {1..*; unordered} matches {
+                                                ELEMENT[at0311] occurrences matches {0..1} matches {   -- VOR gain
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..3.0|}
+                                                            precision matches {|2|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0312] occurrences matches {0..1} matches {   -- Number of valid impulses
+                                                    value matches {
+                                                        DV_COUNT matches {
+                                                            magnitude matches {|>=0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0313] occurrences matches {0..1} matches {   -- Mean peak head velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0314] occurrences matches {0..1} matches {   -- Covert saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0315] occurrences matches {0..1} matches {   -- Overt saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0316] occurrences matches {0..1} matches {   -- Mean saccade latency
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::128]}
+                                                            units matches {"ms"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0317] occurrences matches {0..1} matches {   -- Mean saccade peak velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0318] occurrences matches {0..1} matches {   -- PR score
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..100.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0319] occurrences matches {0..1} matches {   -- Interpretation
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0921,    -- Normal
+                                                                at0922,    -- Abnormal
+                                                                at0923]    -- Inconclusive
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0320] occurrences matches {0..1} matches {   -- Comment
+                                                    value matches {
+                                                        DV_TEXT matches {*}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        CLUSTER[at0330] occurrences matches {0..1} matches {   -- Left posterior canal
+                                            items cardinality matches {1..*; unordered} matches {
+                                                ELEMENT[at0331] occurrences matches {0..1} matches {   -- VOR gain
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..3.0|}
+                                                            precision matches {|2|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0332] occurrences matches {0..1} matches {   -- Number of valid impulses
+                                                    value matches {
+                                                        DV_COUNT matches {
+                                                            magnitude matches {|>=0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0333] occurrences matches {0..1} matches {   -- Mean peak head velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0334] occurrences matches {0..1} matches {   -- Covert saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0335] occurrences matches {0..1} matches {   -- Overt saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0336] occurrences matches {0..1} matches {   -- Mean saccade latency
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::128]}
+                                                            units matches {"ms"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0337] occurrences matches {0..1} matches {   -- Mean saccade peak velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0338] occurrences matches {0..1} matches {   -- PR score
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..100.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0339] occurrences matches {0..1} matches {   -- Interpretation
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0921,    -- Normal
+                                                                at0922,    -- Abnormal
+                                                                at0923]    -- Inconclusive
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0340] occurrences matches {0..1} matches {   -- Comment
+                                                    value matches {
+                                                        DV_TEXT matches {*}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        ELEMENT[at0302] occurrences matches {0..1} matches {   -- Gain asymmetry
+                                            value matches {
+                                                DV_PROPORTION matches {
+                                                    numerator matches {|0.0..100.0|}
+                                                    denominator matches {|100.0|}
+                                                    type matches {2}
+                                                }
+                                            }
+                                        }
+                                        ELEMENT[at0303] occurrences matches {0..1} matches {   -- Comment
+                                            value matches {
+                                                DV_TEXT matches {*}
+                                            }
+                                        }
+                                    }
+                                }
+
+                                CLUSTER[at0400] occurrences matches {0..1} matches {   -- SHIMP
+                                    items cardinality matches {1..*; unordered} matches {
+                                        ELEMENT[at0401] occurrences matches {0..1} matches {   -- Test status
+                                            value matches {
+                                                DV_CODED_TEXT matches {
+                                                    defining_code matches {
+                                                        [local::
+                                                        at0901,    -- Performed
+                                                        at0902,    -- Not performed
+                                                        at0903]    -- Partially performed
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        CLUSTER[at0410] occurrences matches {0..1} matches {   -- Left lateral canal
+                                            items cardinality matches {1..*; unordered} matches {
+                                                ELEMENT[at0411] occurrences matches {0..1} matches {   -- SHIMP gain
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..3.0|}
+                                                            precision matches {|2|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0412] occurrences matches {0..1} matches {   -- Number of valid impulses
+                                                    value matches {
+                                                        DV_COUNT matches {
+                                                            magnitude matches {|>=0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0413] occurrences matches {0..1} matches {   -- Mean peak head velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0414] occurrences matches {0..1} matches {   -- Anticompensatory saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0415] occurrences matches {0..1} matches {   -- Residual covert saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0416] occurrences matches {0..1} matches {   -- Mean anticompensatory saccade latency
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::128]}
+                                                            units matches {"ms"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0417] occurrences matches {0..1} matches {   -- Mean anticompensatory saccade peak velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0419] occurrences matches {0..1} matches {   -- Interpretation
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0921,    -- Normal
+                                                                at0922,    -- Abnormal
+                                                                at0923]    -- Inconclusive
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0420] occurrences matches {0..1} matches {   -- Comment
+                                                    value matches {
+                                                        DV_TEXT matches {*}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        CLUSTER[at0430] occurrences matches {0..1} matches {   -- Right lateral canal
+                                            items cardinality matches {1..*; unordered} matches {
+                                                ELEMENT[at0431] occurrences matches {0..1} matches {   -- SHIMP gain
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"1"}
+                                                            magnitude matches {|0.0..3.0|}
+                                                            precision matches {|2|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0432] occurrences matches {0..1} matches {   -- Number of valid impulses
+                                                    value matches {
+                                                        DV_COUNT matches {
+                                                            magnitude matches {|>=0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0433] occurrences matches {0..1} matches {   -- Mean peak head velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0434] occurrences matches {0..1} matches {   -- Anticompensatory saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0435] occurrences matches {0..1} matches {   -- Residual covert saccades
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0911,    -- Present
+                                                                at0912]    -- Absent
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0436] occurrences matches {0..1} matches {   -- Mean anticompensatory saccade latency
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::128]}
+                                                            units matches {"ms"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0437] occurrences matches {0..1} matches {   -- Mean anticompensatory saccade peak velocity
+                                                    value matches {
+                                                        DV_QUANTITY matches {
+                                                            property matches {[openehr::380]}
+                                                            units matches {"deg/s"}
+                                                            magnitude matches {|0.0..1000.0|}
+                                                            precision matches {|0|}
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0439] occurrences matches {0..1} matches {   -- Interpretation
+                                                    value matches {
+                                                        DV_CODED_TEXT matches {
+                                                            defining_code matches {
+                                                                [local::
+                                                                at0921,    -- Normal
+                                                                at0922,    -- Abnormal
+                                                                at0923]    -- Inconclusive
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ELEMENT[at0440] occurrences matches {0..1} matches {   -- Comment
+                                                    value matches {
+                                                        DV_TEXT matches {*}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        ELEMENT[at0402] occurrences matches {0..1} matches {   -- Gain asymmetry
+                                            value matches {
+                                                DV_PROPORTION matches {
+                                                    numerator matches {|0.0..100.0|}
+                                                    denominator matches {|100.0|}
+                                                    type matches {2}
+                                                }
+                                            }
+                                        }
+                                        ELEMENT[at0403] occurrences matches {0..1} matches {   -- Comment
+                                            value matches {
+                                                DV_TEXT matches {*}
+                                            }
+                                        }
+                                    }
+                                }
+
+                                ELEMENT[at0050] occurrences matches {0..1} matches {   -- Overall interpretation
+                                    value matches {
+                                        DV_TEXT matches {*}
+                                    }
+                                }
+
+                                ELEMENT[at0051] occurrences matches {0..1} matches {   -- Comment
+                                    value matches {
+                                        DV_TEXT matches {*}
+                                    }
+                                }
+
+                                allow_archetype CLUSTER[at0052] occurrences matches {0..*} matches {   -- Multimedia representation
+                                    include
+                                        archetype_id/value matches {/openEHR-EHR-CLUSTER\.media_file(-[a-zA-Z0-9_]+)*\.v1/}
+                                }
+
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[at0004] matches {
+                                items cardinality matches {0..*; unordered} matches {
+
+                                ELEMENT[at0060] occurrences matches {0..1} matches {   -- Confounding factors
+                                    value matches {
+                                        DV_TEXT matches {*}
+                                    }
+                                }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[at0005] matches {
+                items cardinality matches {0..*; unordered} matches {
+
+                    ELEMENT[at0070] occurrences matches {0..1} matches {   -- Device
+                        value matches {
+                            DV_TEXT matches {*}
+                        }
+                    }
+
+                    ELEMENT[at0071] occurrences matches {0..1} matches {   -- Software version
+                        value matches {
+                            DV_TEXT matches {*}
+                        }
+                    }
+
+                    ELEMENT[at0072] occurrences matches {0..1} matches {   -- Recorded eye
+                        value matches {
+                            DV_CODED_TEXT matches {
+                                defining_code matches {
+                                    [local::
+                                    at0931,    -- Right eye
+                                    at0932,    -- Left eye
+                                    at0933]    -- Both eyes
+                                }
+                            }
+                        }
+                    }
+
+                    ELEMENT[at0073] occurrences matches {0..1} matches {   -- Gain calculation method
+                        value matches {
+                            DV_CODED_TEXT matches {
+                                defining_code matches {
+                                    [local::
+                                    at0941,    -- Instantaneous gain at 40 ms
+                                    at0942,    -- Instantaneous gain at 60 ms
+                                    at0943,    -- Instantaneous gain at 80 ms
+                                    at0944,    -- Regression gain
+                                    at0945,    -- Area under the curve ratio
+                                    at0946]    -- Other
+                                }
+                            }
+                        }
+                    }
+
+                    ELEMENT[at0074] occurrences matches {0..1} matches {   -- Target distance
+                        value matches {
+                            DV_QUANTITY matches {
+                                property matches {[openehr::122]}
+                                units matches {"cm"}
+                                magnitude matches {|0.0..1000.0|}
+                                precision matches {|0|}
+                            }
+                        }
+                    }
+
+                    allow_archetype CLUSTER[at0075] occurrences matches {0..*} matches {   -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+
+                }
+            }
+        }
+    }
+
+ontology
+    term_definitions = <
+        ["en"] = <
+            items = <
+                ["at0000"] = <
+                    text        = <"Video Head Impulse Test (vHIT)">
+                    description = <"Results of a video head impulse test (vHIT): a quantitative assessment of the vestibulo-ocular reflex (VOR) for each semicircular canal, using brief, rapid, passive head impulses and high-speed video-oculography.">
+                >
+                ["at0001"] = <
+                    text        = <"History">
+                    description = <"Event series in the OBSERVATION.">
+                >
+                ["at0002"] = <
+                    text        = <"Any point in time event">
+                    description = <"Default, unspecified point in time event which may be more explicitly defined in a template or at run-time.">
+                >
+                ["at0003"] = <
+                    text        = <"Item tree">
+                    description = <"@ internal @">
+                >
+                ["at0004"] = <
+                    text        = <"Item tree">
+                    description = <"@ internal @">
+                >
+                ["at0005"] = <
+                    text        = <"Item tree">
+                    description = <"@ internal @">
+                >
+                ["at0050"] = <
+                    text        = <"Overall interpretation">
+                    description = <"Narrative clinical interpretation of the vHIT examination as a whole, e.g. which canals show reduced function.">
+                >
+                ["at0051"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the vHIT examination not captured in other fields.">
+                >
+                ["at0052"] = <
+                    text        = <"Multimedia representation">
+                    description = <"Recorded eye and head velocity traces or reports exported from the vHIT device.">
+                >
+                ["at0060"] = <
+                    text        = <"Confounding factors">
+                    description = <"Factors that may have affected the results, e.g. neck stiffness, eyelid closure, glasses or contact lenses, medication, fatigue or poor cooperation.">
+                >
+                ["at0070"] = <
+                    text        = <"Device">
+                    description = <"Manufacturer and model of the vHIT system.">
+                >
+                ["at0071"] = <
+                    text        = <"Software version">
+                    description = <"Version of the vHIT analysis software.">
+                >
+                ["at0072"] = <
+                    text        = <"Recorded eye">
+                    description = <"Eye or eyes from which eye movements were recorded.">
+                >
+                ["at0073"] = <
+                    text        = <"Gain calculation method">
+                    description = <"Method used to calculate the VOR gain.">
+                >
+                ["at0074"] = <
+                    text        = <"Target distance">
+                    description = <"Distance between the patient's eyes and the fixation target.">
+                >
+                ["at0075"] = <
+                    text        = <"Extension">
+                    description = <"Additional information required to capture local content or to align with other reference models or formalisms.">
+                >
+                ["at0100"] = <
+                    text        = <"Lateral canals">
+                    description = <"Head impulse paradigm (HIMP) testing in the horizontal plane, stimulating the left and right lateral (horizontal) semicircular canals.">
+                >
+                ["at0101"] = <
+                    text        = <"Test status">
+                    description = <"Whether the Lateral canals test was performed.">
+                >
+                ["at0102"] = <
+                    text        = <"Gain asymmetry">
+                    description = <"Asymmetry between left and right lateral canal VOR gains: |left − right| / (left + right) × 100.">
+                >
+                ["at0103"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the Lateral canals test.">
+                >
+                ["at0110"] = <
+                    text        = <"Left lateral canal">
+                    description = <"Head impulse paradigm (HIMP) results for impulses stimulating the left lateral semicircular canal.">
+                >
+                ["at0111"] = <
+                    text        = <"VOR gain">
+                    description = <"Mean vestibulo-ocular reflex gain (eye velocity / head velocity) for impulses stimulating the left lateral semicircular canal, calculated by the method recorded in the protocol.">
+                >
+                ["at0112"] = <
+                    text        = <"Number of valid impulses">
+                    description = <"Number of impulses towards the left lateral semicircular canal accepted for analysis.">
+                >
+                ["at0113"] = <
+                    text        = <"Mean peak head velocity">
+                    description = <"Mean peak head velocity of the accepted impulses stimulating the left lateral semicircular canal.">
+                >
+                ["at0114"] = <
+                    text        = <"Covert saccades">
+                    description = <"Whether covert (catch-up) saccades occurring during the head impulse were observed for the left lateral semicircular canal.">
+                >
+                ["at0115"] = <
+                    text        = <"Overt saccades">
+                    description = <"Whether overt (catch-up) saccades occurring after the head impulse were observed for the left lateral semicircular canal.">
+                >
+                ["at0116"] = <
+                    text        = <"Mean saccade latency">
+                    description = <"Mean latency from impulse onset to the first catch-up saccade for the left lateral semicircular canal.">
+                >
+                ["at0117"] = <
+                    text        = <"Mean saccade peak velocity">
+                    description = <"Mean peak velocity of the catch-up saccades for the left lateral semicircular canal.">
+                >
+                ["at0118"] = <
+                    text        = <"PR score">
+                    description = <"Saccade grouping (synchrony) score for the left lateral semicircular canal, as reported by the device software. 0 indicates scattered saccade latencies and 100 tightly grouped latencies.">
+                >
+                ["at0119"] = <
+                    text        = <"Interpretation">
+                    description = <"Clinical interpretation of the result for the left lateral semicircular canal.">
+                >
+                ["at0120"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the result for the left lateral semicircular canal.">
+                >
+                ["at0130"] = <
+                    text        = <"Right lateral canal">
+                    description = <"Head impulse paradigm (HIMP) results for impulses stimulating the right lateral semicircular canal.">
+                >
+                ["at0131"] = <
+                    text        = <"VOR gain">
+                    description = <"Mean vestibulo-ocular reflex gain (eye velocity / head velocity) for impulses stimulating the right lateral semicircular canal, calculated by the method recorded in the protocol.">
+                >
+                ["at0132"] = <
+                    text        = <"Number of valid impulses">
+                    description = <"Number of impulses towards the right lateral semicircular canal accepted for analysis.">
+                >
+                ["at0133"] = <
+                    text        = <"Mean peak head velocity">
+                    description = <"Mean peak head velocity of the accepted impulses stimulating the right lateral semicircular canal.">
+                >
+                ["at0134"] = <
+                    text        = <"Covert saccades">
+                    description = <"Whether covert (catch-up) saccades occurring during the head impulse were observed for the right lateral semicircular canal.">
+                >
+                ["at0135"] = <
+                    text        = <"Overt saccades">
+                    description = <"Whether overt (catch-up) saccades occurring after the head impulse were observed for the right lateral semicircular canal.">
+                >
+                ["at0136"] = <
+                    text        = <"Mean saccade latency">
+                    description = <"Mean latency from impulse onset to the first catch-up saccade for the right lateral semicircular canal.">
+                >
+                ["at0137"] = <
+                    text        = <"Mean saccade peak velocity">
+                    description = <"Mean peak velocity of the catch-up saccades for the right lateral semicircular canal.">
+                >
+                ["at0138"] = <
+                    text        = <"PR score">
+                    description = <"Saccade grouping (synchrony) score for the right lateral semicircular canal, as reported by the device software. 0 indicates scattered saccade latencies and 100 tightly grouped latencies.">
+                >
+                ["at0139"] = <
+                    text        = <"Interpretation">
+                    description = <"Clinical interpretation of the result for the right lateral semicircular canal.">
+                >
+                ["at0140"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the result for the right lateral semicircular canal.">
+                >
+                ["at0200"] = <
+                    text        = <"LARP plane">
+                    description = <"Head impulse paradigm (HIMP) testing in the left anterior – right posterior (LARP) vertical canal plane.">
+                >
+                ["at0201"] = <
+                    text        = <"Test status">
+                    description = <"Whether the LARP plane test was performed.">
+                >
+                ["at0202"] = <
+                    text        = <"Gain asymmetry">
+                    description = <"Asymmetry between left anterior and right posterior canal VOR gains: |LA − RP| / (LA + RP) × 100.">
+                >
+                ["at0203"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the LARP plane test.">
+                >
+                ["at0210"] = <
+                    text        = <"Left anterior canal">
+                    description = <"Head impulse paradigm (HIMP) results for impulses stimulating the left anterior semicircular canal.">
+                >
+                ["at0211"] = <
+                    text        = <"VOR gain">
+                    description = <"Mean vestibulo-ocular reflex gain (eye velocity / head velocity) for impulses stimulating the left anterior semicircular canal, calculated by the method recorded in the protocol.">
+                >
+                ["at0212"] = <
+                    text        = <"Number of valid impulses">
+                    description = <"Number of impulses towards the left anterior semicircular canal accepted for analysis.">
+                >
+                ["at0213"] = <
+                    text        = <"Mean peak head velocity">
+                    description = <"Mean peak head velocity of the accepted impulses stimulating the left anterior semicircular canal.">
+                >
+                ["at0214"] = <
+                    text        = <"Covert saccades">
+                    description = <"Whether covert (catch-up) saccades occurring during the head impulse were observed for the left anterior semicircular canal.">
+                >
+                ["at0215"] = <
+                    text        = <"Overt saccades">
+                    description = <"Whether overt (catch-up) saccades occurring after the head impulse were observed for the left anterior semicircular canal.">
+                >
+                ["at0216"] = <
+                    text        = <"Mean saccade latency">
+                    description = <"Mean latency from impulse onset to the first catch-up saccade for the left anterior semicircular canal.">
+                >
+                ["at0217"] = <
+                    text        = <"Mean saccade peak velocity">
+                    description = <"Mean peak velocity of the catch-up saccades for the left anterior semicircular canal.">
+                >
+                ["at0218"] = <
+                    text        = <"PR score">
+                    description = <"Saccade grouping (synchrony) score for the left anterior semicircular canal, as reported by the device software. 0 indicates scattered saccade latencies and 100 tightly grouped latencies.">
+                >
+                ["at0219"] = <
+                    text        = <"Interpretation">
+                    description = <"Clinical interpretation of the result for the left anterior semicircular canal.">
+                >
+                ["at0220"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the result for the left anterior semicircular canal.">
+                >
+                ["at0230"] = <
+                    text        = <"Right posterior canal">
+                    description = <"Head impulse paradigm (HIMP) results for impulses stimulating the right posterior semicircular canal.">
+                >
+                ["at0231"] = <
+                    text        = <"VOR gain">
+                    description = <"Mean vestibulo-ocular reflex gain (eye velocity / head velocity) for impulses stimulating the right posterior semicircular canal, calculated by the method recorded in the protocol.">
+                >
+                ["at0232"] = <
+                    text        = <"Number of valid impulses">
+                    description = <"Number of impulses towards the right posterior semicircular canal accepted for analysis.">
+                >
+                ["at0233"] = <
+                    text        = <"Mean peak head velocity">
+                    description = <"Mean peak head velocity of the accepted impulses stimulating the right posterior semicircular canal.">
+                >
+                ["at0234"] = <
+                    text        = <"Covert saccades">
+                    description = <"Whether covert (catch-up) saccades occurring during the head impulse were observed for the right posterior semicircular canal.">
+                >
+                ["at0235"] = <
+                    text        = <"Overt saccades">
+                    description = <"Whether overt (catch-up) saccades occurring after the head impulse were observed for the right posterior semicircular canal.">
+                >
+                ["at0236"] = <
+                    text        = <"Mean saccade latency">
+                    description = <"Mean latency from impulse onset to the first catch-up saccade for the right posterior semicircular canal.">
+                >
+                ["at0237"] = <
+                    text        = <"Mean saccade peak velocity">
+                    description = <"Mean peak velocity of the catch-up saccades for the right posterior semicircular canal.">
+                >
+                ["at0238"] = <
+                    text        = <"PR score">
+                    description = <"Saccade grouping (synchrony) score for the right posterior semicircular canal, as reported by the device software. 0 indicates scattered saccade latencies and 100 tightly grouped latencies.">
+                >
+                ["at0239"] = <
+                    text        = <"Interpretation">
+                    description = <"Clinical interpretation of the result for the right posterior semicircular canal.">
+                >
+                ["at0240"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the result for the right posterior semicircular canal.">
+                >
+                ["at0300"] = <
+                    text        = <"RALP plane">
+                    description = <"Head impulse paradigm (HIMP) testing in the right anterior – left posterior (RALP) vertical canal plane.">
+                >
+                ["at0301"] = <
+                    text        = <"Test status">
+                    description = <"Whether the RALP plane test was performed.">
+                >
+                ["at0302"] = <
+                    text        = <"Gain asymmetry">
+                    description = <"Asymmetry between right anterior and left posterior canal VOR gains: |RA − LP| / (RA + LP) × 100.">
+                >
+                ["at0303"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the RALP plane test.">
+                >
+                ["at0310"] = <
+                    text        = <"Right anterior canal">
+                    description = <"Head impulse paradigm (HIMP) results for impulses stimulating the right anterior semicircular canal.">
+                >
+                ["at0311"] = <
+                    text        = <"VOR gain">
+                    description = <"Mean vestibulo-ocular reflex gain (eye velocity / head velocity) for impulses stimulating the right anterior semicircular canal, calculated by the method recorded in the protocol.">
+                >
+                ["at0312"] = <
+                    text        = <"Number of valid impulses">
+                    description = <"Number of impulses towards the right anterior semicircular canal accepted for analysis.">
+                >
+                ["at0313"] = <
+                    text        = <"Mean peak head velocity">
+                    description = <"Mean peak head velocity of the accepted impulses stimulating the right anterior semicircular canal.">
+                >
+                ["at0314"] = <
+                    text        = <"Covert saccades">
+                    description = <"Whether covert (catch-up) saccades occurring during the head impulse were observed for the right anterior semicircular canal.">
+                >
+                ["at0315"] = <
+                    text        = <"Overt saccades">
+                    description = <"Whether overt (catch-up) saccades occurring after the head impulse were observed for the right anterior semicircular canal.">
+                >
+                ["at0316"] = <
+                    text        = <"Mean saccade latency">
+                    description = <"Mean latency from impulse onset to the first catch-up saccade for the right anterior semicircular canal.">
+                >
+                ["at0317"] = <
+                    text        = <"Mean saccade peak velocity">
+                    description = <"Mean peak velocity of the catch-up saccades for the right anterior semicircular canal.">
+                >
+                ["at0318"] = <
+                    text        = <"PR score">
+                    description = <"Saccade grouping (synchrony) score for the right anterior semicircular canal, as reported by the device software. 0 indicates scattered saccade latencies and 100 tightly grouped latencies.">
+                >
+                ["at0319"] = <
+                    text        = <"Interpretation">
+                    description = <"Clinical interpretation of the result for the right anterior semicircular canal.">
+                >
+                ["at0320"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the result for the right anterior semicircular canal.">
+                >
+                ["at0330"] = <
+                    text        = <"Left posterior canal">
+                    description = <"Head impulse paradigm (HIMP) results for impulses stimulating the left posterior semicircular canal.">
+                >
+                ["at0331"] = <
+                    text        = <"VOR gain">
+                    description = <"Mean vestibulo-ocular reflex gain (eye velocity / head velocity) for impulses stimulating the left posterior semicircular canal, calculated by the method recorded in the protocol.">
+                >
+                ["at0332"] = <
+                    text        = <"Number of valid impulses">
+                    description = <"Number of impulses towards the left posterior semicircular canal accepted for analysis.">
+                >
+                ["at0333"] = <
+                    text        = <"Mean peak head velocity">
+                    description = <"Mean peak head velocity of the accepted impulses stimulating the left posterior semicircular canal.">
+                >
+                ["at0334"] = <
+                    text        = <"Covert saccades">
+                    description = <"Whether covert (catch-up) saccades occurring during the head impulse were observed for the left posterior semicircular canal.">
+                >
+                ["at0335"] = <
+                    text        = <"Overt saccades">
+                    description = <"Whether overt (catch-up) saccades occurring after the head impulse were observed for the left posterior semicircular canal.">
+                >
+                ["at0336"] = <
+                    text        = <"Mean saccade latency">
+                    description = <"Mean latency from impulse onset to the first catch-up saccade for the left posterior semicircular canal.">
+                >
+                ["at0337"] = <
+                    text        = <"Mean saccade peak velocity">
+                    description = <"Mean peak velocity of the catch-up saccades for the left posterior semicircular canal.">
+                >
+                ["at0338"] = <
+                    text        = <"PR score">
+                    description = <"Saccade grouping (synchrony) score for the left posterior semicircular canal, as reported by the device software. 0 indicates scattered saccade latencies and 100 tightly grouped latencies.">
+                >
+                ["at0339"] = <
+                    text        = <"Interpretation">
+                    description = <"Clinical interpretation of the result for the left posterior semicircular canal.">
+                >
+                ["at0340"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the result for the left posterior semicircular canal.">
+                >
+                ["at0400"] = <
+                    text        = <"SHIMP">
+                    description = <"Suppression head impulse paradigm (SHIMP) testing in the horizontal plane, in which the patient fixates a head-fixed target that moves with the head.">
+                >
+                ["at0401"] = <
+                    text        = <"Test status">
+                    description = <"Whether the SHIMP test was performed.">
+                >
+                ["at0402"] = <
+                    text        = <"Gain asymmetry">
+                    description = <"Asymmetry between left and right SHIMP gains: |left − right| / (left + right) × 100.">
+                >
+                ["at0403"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the SHIMP test.">
+                >
+                ["at0410"] = <
+                    text        = <"Left lateral canal">
+                    description = <"Suppression head impulse paradigm (SHIMP) results for impulses stimulating the left lateral semicircular canal.">
+                >
+                ["at0411"] = <
+                    text        = <"SHIMP gain">
+                    description = <"Mean vestibulo-ocular reflex gain for suppression head impulses stimulating the left lateral semicircular canal.">
+                >
+                ["at0412"] = <
+                    text        = <"Number of valid impulses">
+                    description = <"Number of suppression head impulses towards the left lateral semicircular canal accepted for analysis.">
+                >
+                ["at0413"] = <
+                    text        = <"Mean peak head velocity">
+                    description = <"Mean peak head velocity of the accepted suppression head impulses stimulating the left lateral semicircular canal.">
+                >
+                ["at0414"] = <
+                    text        = <"Anticompensatory saccades">
+                    description = <"Whether anticompensatory (SHIMP) saccades back to the head-fixed target were observed for the left lateral semicircular canal. Their presence is the expected finding with preserved vestibular function.">
+                >
+                ["at0415"] = <
+                    text        = <"Residual covert saccades">
+                    description = <"Whether residual compensatory covert saccades were observed for the left lateral semicircular canal during suppression head impulses.">
+                >
+                ["at0416"] = <
+                    text        = <"Mean anticompensatory saccade latency">
+                    description = <"Mean latency from impulse onset to the anticompensatory saccade for the left lateral semicircular canal.">
+                >
+                ["at0417"] = <
+                    text        = <"Mean anticompensatory saccade peak velocity">
+                    description = <"Mean peak velocity of the anticompensatory saccades for the left lateral semicircular canal.">
+                >
+                ["at0419"] = <
+                    text        = <"Interpretation">
+                    description = <"Clinical interpretation of the SHIMP result for the left lateral semicircular canal.">
+                >
+                ["at0420"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the SHIMP result for the left lateral semicircular canal.">
+                >
+                ["at0430"] = <
+                    text        = <"Right lateral canal">
+                    description = <"Suppression head impulse paradigm (SHIMP) results for impulses stimulating the right lateral semicircular canal.">
+                >
+                ["at0431"] = <
+                    text        = <"SHIMP gain">
+                    description = <"Mean vestibulo-ocular reflex gain for suppression head impulses stimulating the right lateral semicircular canal.">
+                >
+                ["at0432"] = <
+                    text        = <"Number of valid impulses">
+                    description = <"Number of suppression head impulses towards the right lateral semicircular canal accepted for analysis.">
+                >
+                ["at0433"] = <
+                    text        = <"Mean peak head velocity">
+                    description = <"Mean peak head velocity of the accepted suppression head impulses stimulating the right lateral semicircular canal.">
+                >
+                ["at0434"] = <
+                    text        = <"Anticompensatory saccades">
+                    description = <"Whether anticompensatory (SHIMP) saccades back to the head-fixed target were observed for the right lateral semicircular canal. Their presence is the expected finding with preserved vestibular function.">
+                >
+                ["at0435"] = <
+                    text        = <"Residual covert saccades">
+                    description = <"Whether residual compensatory covert saccades were observed for the right lateral semicircular canal during suppression head impulses.">
+                >
+                ["at0436"] = <
+                    text        = <"Mean anticompensatory saccade latency">
+                    description = <"Mean latency from impulse onset to the anticompensatory saccade for the right lateral semicircular canal.">
+                >
+                ["at0437"] = <
+                    text        = <"Mean anticompensatory saccade peak velocity">
+                    description = <"Mean peak velocity of the anticompensatory saccades for the right lateral semicircular canal.">
+                >
+                ["at0439"] = <
+                    text        = <"Interpretation">
+                    description = <"Clinical interpretation of the SHIMP result for the right lateral semicircular canal.">
+                >
+                ["at0440"] = <
+                    text        = <"Comment">
+                    description = <"Additional narrative about the SHIMP result for the right lateral semicircular canal.">
+                >
+                ["at0901"] = <
+                    text        = <"Performed">
+                    description = <"The test was performed and completed.">
+                >
+                ["at0902"] = <
+                    text        = <"Not performed">
+                    description = <"The test was not performed.">
+                >
+                ["at0903"] = <
+                    text        = <"Partially performed">
+                    description = <"The test was started but not completed, e.g. stopped because of neck pain, discomfort or poor recording quality.">
+                >
+                ["at0911"] = <
+                    text        = <"Present">
+                    description = <"The saccades were observed.">
+                >
+                ["at0912"] = <
+                    text        = <"Absent">
+                    description = <"The saccades were not observed.">
+                >
+                ["at0921"] = <
+                    text        = <"Normal">
+                    description = <"Result is within the normal range.">
+                >
+                ["at0922"] = <
+                    text        = <"Abnormal">
+                    description = <"Result is outside the normal range, indicating reduced function.">
+                >
+                ["at0923"] = <
+                    text        = <"Inconclusive">
+                    description = <"Result cannot be reliably interpreted, e.g. because of artefacts or too few valid impulses.">
+                >
+                ["at0931"] = <
+                    text        = <"Right eye">
+                    description = <"Eye movements were recorded from the right eye.">
+                >
+                ["at0932"] = <
+                    text        = <"Left eye">
+                    description = <"Eye movements were recorded from the left eye.">
+                >
+                ["at0933"] = <
+                    text        = <"Both eyes">
+                    description = <"Eye movements were recorded from both eyes.">
+                >
+                ["at0941"] = <
+                    text        = <"Instantaneous gain at 40 ms">
+                    description = <"Ratio of eye velocity to head velocity 40 ms after impulse onset.">
+                >
+                ["at0942"] = <
+                    text        = <"Instantaneous gain at 60 ms">
+                    description = <"Ratio of eye velocity to head velocity 60 ms after impulse onset.">
+                >
+                ["at0943"] = <
+                    text        = <"Instantaneous gain at 80 ms">
+                    description = <"Ratio of eye velocity to head velocity 80 ms after impulse onset.">
+                >
+                ["at0944"] = <
+                    text        = <"Regression gain">
+                    description = <"Slope of the regression of eye velocity against head velocity over the impulse.">
+                >
+                ["at0945"] = <
+                    text        = <"Area under the curve ratio">
+                    description = <"Ratio of the area under the eye velocity curve to the area under the head velocity curve.">
+                >
+                ["at0946"] = <
+                    text        = <"Other">
+                    description = <"Another gain calculation method; specify in the comment.">
+                >
+            >
+        >
+    >
